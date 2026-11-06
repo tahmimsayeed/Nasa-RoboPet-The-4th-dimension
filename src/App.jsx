@@ -1,17 +1,58 @@
+
+import { useState } from "react";
 import { GameProvider, useGame } from "./context/GameContext";
 import Welcome from "./pages/Welcome";
 import Workshop from "./pages/Workshop";
+import MissionArchive from "./pages/MissionArchive";
+import MissionActivity from "./pages/MissionActivity";
+import MarsMissionActivity from "./pages/MarsMissionActivity";
+import GalaxyMissionActivity from "./pages/GalaxyMissionActivity";
 import SpaceBackground from "./components/SpaceBackground";
 import PixelButton from "./components/PixelButton";
 import ProgressBar from "./components/ProgressBar";
 import RobotPet from "./components/RobotPet";
+
 function GameScreen() {
   const { player, startGame, resetGame } = useGame();
+
+  const [showArchive, setShowArchive] = useState(() => {
+    return Boolean(
+      player?.robot && player?.completedMissions?.length
+    );
+  });
+
+  const [selectedMission, setSelectedMission] = useState(null);
 
   const handleWorkshopComplete = (updatedPlayer) => {
     startGame(updatedPlayer);
   };
 
+  const handleMissionComplete = (missionScore) => {
+    const missionId = selectedMission.id;
+    const completedMissions = player.completedMissions || [];
+
+    const updatedPlayer = {
+      ...player,
+      completedMissions: completedMissions.includes(missionId)
+        ? completedMissions
+        : [...completedMissions, missionId],
+      missionScores: {
+        ...(player.missionScores || {}),
+        [missionId]: missionScore,
+      },
+    };
+
+    startGame(updatedPlayer);
+setShowArchive(false);
+};
+
+  const handleReset = () => {
+    setShowArchive(false);
+    setSelectedMission(null);
+    resetGame();
+  };
+const allMissionsCompleted =
+  (player?.completedMissions?.length || 0) === 3;
   return (
     <SpaceBackground>
       {!player ? (
@@ -21,16 +62,79 @@ function GameScreen() {
           player={player}
           onComplete={handleWorkshopComplete}
         />
-      ) : (
+      ) : selectedMission ? (
+        selectedMission.id === 1 ? (
+          <MissionActivity
+            player={player}
+            onBack={() => setSelectedMission(null)}
+            onComplete={handleMissionComplete}
+          />
+        ) : selectedMission.id === 2 ? (
+          <MarsMissionActivity
+            player={player}
+            onBack={() => setSelectedMission(null)}
+            onComplete={handleMissionComplete}
+          />
+        ) : selectedMission.id === 3 ? (
+          <GalaxyMissionActivity
+            player={player}
+            onBack={() => setSelectedMission(null)}
+            onComplete={handleMissionComplete}
+          />
+        ) : (
+          <main className="welcome-screen">
+            <section className="welcome-card">
+              <h1>Mission Coming Soon!</h1>
+              <PixelButton onClick={() => setSelectedMission(null)}>
+                Back to Mission Archive
+              </PixelButton>
+            </section>
+          </main>
+        )
+     ) : !showArchive && allMissionsCompleted ? (
         <main className="welcome-screen">
           <section className="welcome-card">
-            <p className="welcome-label">NASA ROBO PET STATION</p>
+            <p className="welcome-label"> ROBO PET STATION</p>
+            <h1 className="champion-title">
+            🏆 Galaxy Champion!
+            </h1>
+
+            <h2>Congratulations, {player.nickname}!</h2>
+
+            <p className="welcome-description">
+               You completed all three space missions!
+               You are now an official Galaxy Guardian!
+             </p>
+
+           <ProgressBar
+              progress={100}
+              label="Adventure Progress: 3/3 — 100%"
+            />
+
+            <PixelButton onClick={() => setShowArchive(true)}>
+               Replay Missions
+            </PixelButton>
+
+            <PixelButton onClick={handleReset}>
+         Start a New Adventure
+      </PixelButton>
+    </section>
+  </main>
+) : showArchive ? (
+  <MissionArchive
+    player={player}
+    onStartMission={setSelectedMission}
+  />
+)
+       : (
+        <main className="welcome-screen">
+          <section className="welcome-card">
+            <p className="welcome-label">
+              NASA ROBO PET STATION
+            </p>
 
             <h1>Meet Your Robo-Pal, {player.nickname}!</h1>
 
-            <p className="welcome-description">
-              Your robot is ready for its space adventure!
-            </p>
             <RobotPet
               nickname={player.nickname}
               color={player.robot.color.value}
@@ -39,24 +143,19 @@ function GameScreen() {
             />
 
             <p className="welcome-description">
-              Color: {player.robot.color.name}
-            </p>
-
-            <p className="welcome-description">
-              Accessory: {player.robot.accessory.emoji}{" "}
-              {player.robot.accessory.name}
-            </p>
-
-            <p className="welcome-description">
-              Personality: {player.robot.personality}
+              Your robot is ready for its space adventure!
             </p>
 
             <ProgressBar
-              progress={0}
-              label="Adventure Progress"
+              progress={((player.completedMissions?.length || 0) / 3) * 100}
+              label={`Adventure Progress: ${player.completedMissions?.length || 0}/3`}
             />
 
-            <PixelButton onClick={resetGame}>
+            <PixelButton onClick={() => setShowArchive(true)}>
+              Continue to Mission Archive
+            </PixelButton>
+
+            <PixelButton onClick={handleReset}>
               Start Again
             </PixelButton>
           </section>

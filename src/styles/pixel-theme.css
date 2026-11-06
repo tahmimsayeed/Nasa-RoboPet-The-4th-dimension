@@ -709,3 +709,39 @@
 .robot-feet span {
   border-color: var(--robot-color);
 }
+
+/* COMPLETED MISSION STATUS */
+.mission-completed {
+  margin: 12px auto;
+  padding: 10px 16px;
+  max-width: 200px;
+  background: rgba(80, 220, 140, 0.15);
+  border: 2px solid #50dc8c;
+  border-radius: 6px;
+  color: #50dc8c;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.mission-completed p {
+  margin-top: 6px;
+  font-size: 11px;
+  color: var(--pixel-text);
+}
+
+@keyframes championGlow {
+  0%, 100% {
+    transform: scale(1);
+    text-shadow: 0 0 5px gold;
+  }
+
+  50% {
+    transform: scale(1.08);
+    text-shadow: 0 0 20px gold, 0 0 35px orange;
+  }
+}
+
+.champion-title {
+  animation: championGlow 2s ease-in-out infinite;
+  color: #ffd700;
+}
