@@ -551,3 +551,73 @@
     transform: translateY(-10px);
   }
 }
+
+/* =================================
+   ROBO-PAL INTERACTIONS
+================================= */
+
+/* Blinking eyes */
+
+.robot-eye {
+  animation: robotBlink 4s infinite;
+}
+
+.robot-eye:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+@keyframes robotBlink {
+  0%, 44%, 48%, 100% {
+    transform: scaleY(1);
+  }
+
+  46% {
+    transform: scaleY(0.1);
+  }
+}
+
+/* Waving right arm */
+
+.robot-pet.waving .robot-arm.right {
+  transform-origin: bottom center;
+  animation: robotWave 0.2s ease-in-out 5 alternate;
+}
+
+@keyframes robotWave {
+  from {
+    transform: rotate(-20deg);
+  }
+
+  to {
+    transform: rotate(-65deg);
+  }
+}
+
+/* Interactive robot */
+
+.robot-pet {
+  cursor: pointer;
+}
+
+.robot-pet:focus-visible {
+  outline: 3px solid var(--pixel-yellow);
+  outline-offset: 8px;
+}
+
+.robot-hint {
+  color: var(--pixel-muted);
+  font-size: 10px;
+  margin-top: 8px;
+  letter-spacing: 1px;
+  animation: sparkle 2s infinite alternate;
+}
+
+/* Respect reduced-motion preferences */
+
+@media (prefers-reduced-motion: reduce) {
+  .robot-eye,
+  .robot-pet.waving .robot-arm.right,
+  .robot-hint {
+    animation: none !important;
+  }
+}
