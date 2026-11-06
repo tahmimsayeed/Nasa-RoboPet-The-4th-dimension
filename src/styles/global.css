@@ -1,0 +1,33 @@
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: "Courier New", monospace;
+  background: #10132b;
+  color: #f5f3ff;
+}
+
+button,
+input {
+  font-family: inherit;
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid #70e1f5;
+  outline-offset: 3px;
+}
+
+#root {
+  min-height: 100vh;
+}
