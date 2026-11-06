@@ -446,6 +446,7 @@
   height: 65px;
   background: #b9eaff;
   border: 5px solid #70e1f5;
+  border-color: var(--robot-color) !important;
   box-shadow: 5px 5px 0 #397b9b;
   display: flex;
   align-items: center;
@@ -620,4 +621,91 @@
   .robot-hint {
     animation: none !important;
   }
+}
+
+/* ROBOT WORKSHOP */
+
+.workshop-card {
+  max-width: 750px;
+}
+
+.workshop-card h2 {
+  color: var(--pixel-yellow);
+  font-size: 16px;
+  margin-top: 28px;
+  margin-bottom: 14px;
+}
+
+.workshop-options {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.workshop-choice {
+  padding: 12px 16px;
+  border: 2px solid var(--pixel-purple);
+  border-radius: 8px;
+  background: var(--pixel-card);
+  color: var(--pixel-text);
+  font-family: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.workshop-choice:hover {
+  transform: translateY(-3px);
+}
+
+.workshop-choice[aria-pressed="true"] {
+  color: #17132d;
+  font-weight: bold;
+  box-shadow: 0 0 12px var(--pixel-yellow);
+  border-color: var(--pixel-yellow) !important;
+}
+
+.workshop-card .pixel-button {
+  margin-top: 24px;
+}
+
+@media (max-width: 600px) {
+  .workshop-choice {
+    font-size: 10px;
+    padding: 10px;
+  }
+}
+
+/* CUSTOMIZABLE ROBOT PREVIEW */
+
+.robot-pet {
+  --robot-color: #55c7ff;
+}
+
+.robot-head,
+.robot-body,
+.robot-ear,
+.robot-arm,
+.robot-feet span,
+.robot-face {
+  background-color: var(--robot-color);
+}
+
+.robot-preview-accessory {
+  font-size: 32px;
+  height: 38px;
+  text-align: center;
+  animation: sparkle 2s infinite alternate;
+}
+
+/* MATCH ROBOT OUTLINES TO SELECTED COLOR */
+
+.robot-head,
+.robot-body,
+.robot-ear,
+.robot-arm,
+.robot-feet span {
+  border-color: var(--robot-color);
 }
