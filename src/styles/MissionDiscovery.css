@@ -1,0 +1,217 @@
+/* =================================
+   MISSION DISCOVERY PAGE
+================================= */
+
+.mission-discovery {
+  min-height: 100vh;
+  padding: 40px 6%;
+  color: var(--pixel-white, #f5f3ff);
+  font-family: "Courier New", monospace;
+}
+
+/* Header */
+
+.mission-discovery-header {
+  max-width: 850px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+
+.mission-discovery-label {
+  color: var(--pixel-cyan, #70e1f5);
+  font-size: 0.85rem;
+  font-weight: bold;
+  letter-spacing: 3px;
+}
+
+.mission-discovery-header h1 {
+  margin: 12px 0;
+  color: var(--pixel-yellow, #ffe082);
+  font-size: clamp(2rem, 5vw, 3rem);
+  text-shadow: 3px 3px 0 #000;
+}
+
+.mission-discovery-header > p:last-child {
+  color: var(--pixel-muted, #c2c4df);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+/* Mission cards */
+
+.mission-discovery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.mission-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--pixel-card, #1d2040);
+  border: 3px solid var(--pixel-border, #7776bd);
+  box-shadow: 5px 5px 0 #080b1c;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.mission-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--pixel-cyan, #70e1f5);
+}
+
+.mission-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+  padding: 22px;
+}
+
+.mission-card-status {
+  padding: 5px 9px;
+  background: var(--space-blue, #252e5c);
+  border: 1px solid var(--pixel-cyan, #70e1f5);
+  color: var(--pixel-cyan, #70e1f5);
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.mission-card h2 {
+  margin: 16px 0 8px;
+  color: var(--pixel-yellow, #ffe082);
+  font-size: 1.25rem;
+}
+
+.mission-card-location {
+  color: var(--pixel-cyan, #70e1f5);
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+.mission-card-content > p:not(.mission-card-location) {
+  color: var(--pixel-muted, #c2c4df);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  flex: 1;
+}
+
+/* Buttons */
+
+.mission-card-button {
+  margin-top: 18px;
+  padding: 11px 16px;
+  background: var(--pixel-pink, #ff80ab);
+  border: 3px solid #ffc1d6;
+  box-shadow: 3px 3px 0 #080b1c;
+  color: #10132b;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.mission-card-button:hover {
+  transform: translateY(-2px);
+}
+
+.mission-card-button:focus-visible,
+.mission-modal-close:focus-visible {
+  outline: 3px solid var(--pixel-cyan, #70e1f5);
+  outline-offset: 4px;
+}
+
+/* Mission details popup */
+
+.mission-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(5, 7, 24, 0.85);
+}
+
+.mission-modal {
+  position: relative;
+  width: 100%;
+  max-width: 650px;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 32px;
+  background: var(--pixel-card, #1d2040);
+  border: 3px solid var(--pixel-cyan, #70e1f5);
+  box-shadow: 7px 7px 0 #080b1c;
+}
+
+.mission-modal h2 {
+  padding-right: 25px;
+  color: var(--pixel-yellow, #ffe082);
+  font-size: 1.7rem;
+}
+
+.mission-modal h3 {
+  margin-top: 25px;
+  color: var(--pixel-cyan, #70e1f5);
+}
+
+.mission-modal p,
+.mission-modal li {
+  color: var(--pixel-muted, #c2c4df);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.mission-modal strong {
+  color: var(--pixel-white, #f5f3ff);
+}
+
+.mission-modal li {
+  margin-bottom: 8px;
+  padding-left: 5px;
+}
+
+.mission-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  color: var(--pixel-white, #f5f3ff);
+  font-family: inherit;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+/* Mobile layout */
+
+@media (max-width: 600px) {
+  .mission-discovery {
+    padding: 25px 5%;
+  }
+
+  .mission-discovery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mission-modal {
+    padding: 25px 20px;
+  }
+
+  .mission-modal h2 {
+    font-size: 1.4rem;
+  }
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  .mission-card,
+  .mission-card-button {
+    transition: none;
+  }
+}

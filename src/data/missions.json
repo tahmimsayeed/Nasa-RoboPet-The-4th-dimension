@@ -1,0 +1,180 @@
+[
+  {
+    "id": "apollo-lrv",
+    "name": "Apollo 15 Lunar Roving Vehicle",
+    "location": "Moon",
+    "launchDate": "1971-07-26",
+    "purpose": "To help astronauts explore more of the Moon by providing battery-powered transportation across the lunar surface.",
+    "discoveries": [
+      "Helped astronauts explore the Hadley-Apennine region.",
+      "Allowed astronauts to travel approximately 17.5 miles across the lunar surface",
+      "Supported the collection of lunar rocks and soil for scientific study."
+    ],
+    "status": "Mission Complete",
+    "facts": [
+      "It was the first vehicle driven by humans on the Moon.",
+      "It had four wheels and ran on batteries.",
+      "Astronauts David Scott and James Irwin used it during Apollo 15."
+    ],
+    "source": [
+      "https://www.nasa.gov/mission/apollo-15/",
+      "https://www.nasa.gov/image-article/this-week-nasa-history-first-use-of-lunar-roving-vehicle-july-31-1971/",
+      "https://www.nasa.gov/image-article/apollo-15-lunar-roving-vehicle/"
+    ]
+  },
+  {
+    "id": "sojourner",
+    "name": "Sojourner",
+    "location": "Mars",
+    "launchDate": "1996-12-04",
+    "purpose": "To explore the Martian surface, study rocks and soil, and demonstrate that a small robotic rover could operate on another planet.",
+    "discoveries": [
+      "Studied the chemical composition of Martian rocks and soil.",
+      "Returned images of the Martian landscape.",
+      "Provided information about the Martian environment."
+    ],
+    "status": "Mission Complete",
+    "facts": [
+      "It was NASA's first rover to operate on Mars.",
+      "It was about the size of a microwave oven.",
+      "It worked for 83 days, much longer than its planned seven-day mission."
+    ],
+    "source": [
+      "https://science.nasa.gov/mission/mars-pathfinder/",
+      "https://science.nasa.gov/resource/sojourner-terrain/",
+      "https://science.nasa.gov/planetary-science/programs/radioisotope-power-systems/missions/"
+    ]
+  },
+  {
+    "id": "spirit",
+    "name": "Spirit",
+    "location": "Mars",
+    "launchDate": "2003-06-10",
+    "purpose": "To explore Martian rocks and soil and investigate whether water once existed on Mars.",
+    "discoveries": [
+      "Found strong evidence that Mars was once much wetter.",
+      "Studied rocks and minerals that provided clues about ancient water.",
+      "Explored the Martian surface for more than six years."
+    ],
+    "status": "Mission Complete",
+    "facts": [
+      "Spirit had a twin rover named Opportunity.",
+      "It operated for more than six years.",
+      "It travelled approximately 4.8 miles across Mars."
+    ],
+    "source": [
+      "https://science.nasa.gov/mission/mer-spirit/",
+      "https://science.nasa.gov/mission/mars-exploration-rovers-spirit-and-opportunity/"
+    ]
+  },
+  {
+    "id": "opportunity",
+    "name": "Opportunity",
+    "location": "Mars",
+    "launchDate": "2003-07-07",
+    "purpose": "To study Martian rocks and soil and investigate whether ancient Mars had conditions that could support microbial life.",
+    "discoveries": [
+      "Found evidence that liquid water once existed on Mars.",
+      "Studied rocks showing signs of past water activity.",
+      "Helped scientists understand the history of water on Mars."
+    ],
+    "status": "Mission Complete",
+    "facts": [
+      "Its twin rover was named Spirit.",
+      "It worked for almost 15 years.",
+      "It travelled more than 28 miles across Mars."
+    ],
+    "source": [
+      "https://science.nasa.gov/mission/mer-opportunity/",
+      "https://science.nasa.gov/mission/mars-exploration-rovers-spirit-and-opportunity/"
+    ]
+  },
+  {
+    "id": "curiosity",
+    "name": "Curiosity",
+    "location": "Mars",
+    "launchDate": "2011-11-26",
+    "purpose": "To investigate whether ancient Mars had environmental conditions that could support microbial life.",
+    "discoveries": [
+      "Found evidence of ancient freshwater environments.",
+      "Discovered chemical and mineral evidence of past habitable environments.",
+      "Studied rocks that preserve clues about ancient Martian environments."
+    ],
+    "status": "Active",
+    "facts": [
+      "Curiosity is about the size of a small car.",
+      "It landed inside Gale Crater.",
+      "It uses a robotic arm to study Martian rocks and soil."
+    ],
+    "source": [
+      "https://science.nasa.gov/mission/msl-curiosity/",
+      "https://science.nasa.gov/mars/"
+    ]
+  },
+  {
+    "id": "perseverance",
+    "name": "Perseverance",
+    "location": "Mars",
+    "launchDate": "2020-07-30",
+    "purpose": "To search for signs of ancient microbial life, study Martian geology, and collect rock and soil samples for possible future return to Earth.",
+    "discoveries": [
+      "Collected rock samples for possible future scientific study on Earth.",
+      "Investigated ancient environments in Jezero Crater.",
+      "Studied rocks and minerals that help scientists understand the history of Mars."
+    ],
+    "status": "Active",
+    "facts": [
+      "Perseverance has a robotic arm for examining rocks.",
+      "It carries a device called MOXIE that demonstrated oxygen production from the Martian atmosphere.",
+      "It carried the Ingenuity helicopter to Mars."
+    ],
+    "source": [
+      "https://science.nasa.gov/mission/mars-2020-perseverance/",
+      "https://science.nasa.gov/mars/"
+    ]
+  },
+  {
+    "id": "ingenuity",
+    "name": "Ingenuity",
+    "location": "Mars",
+    "launchDate": "2020-07-30",
+    "purpose": "To demonstrate that powered, controlled flight was possible in the thin atmosphere of Mars.",
+    "discoveries": [
+      "Demonstrated the first powered, controlled flight on another planet.",
+      "Completed 72 successful flights.",
+      "Provided valuable information about flying in the Martian atmosphere."
+    ],
+    "status": "Mission Complete",
+    "facts": [
+      "Ingenuity was a small robotic helicopter.",
+      "Its first flight took place on April 19, 2021.",
+      "It was originally designed for just five test flights but completed 72."
+    ],
+    "source": [
+      "https://science.nasa.gov/mission/mars-2020-perseverance/ingenuity-mars-helicopter/",
+      "https://www.nasa.gov/news-release/after-three-years-on-mars-nasas-ingenuity-helicopter-mission-ends/"
+    ]
+  },
+  {
+    "id": "voyager-1",
+    "name": "Voyager 1",
+    "location": "Interstellar Space",
+    "launchDate": "1977-09-05",
+    "purpose": "To explore the outer planets and investigate the space beyond the Sun's protective bubble, known as the heliosphere.",
+    "discoveries": [
+      "Discovered new moons around Jupiter and Saturn.",
+      "Helped scientists study the outer planets.",
+      "Became the first human-made spacecraft to enter interstellar space."
+    ],
+    "status": "Active",
+    "facts": [
+      "Voyager 1 launched in 1977.",
+      "It carries a Golden Record containing sounds and images from Earth.",
+      "It entered interstellar space in August 2012."
+    ],
+    "source": [
+      "https://science.nasa.gov/mission/voyager/voyager-1/",
+      "https://voyager.gsfc.nasa.gov/mission.html"
+    ]
+  }
+]
