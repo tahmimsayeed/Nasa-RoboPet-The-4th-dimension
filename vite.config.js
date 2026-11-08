@@ -3,6 +3,8 @@ import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
+  base: '/Nasa-RoboPet-The-4th-dimension/',
+
   plugins: [
     react(),
     VitePWA({
@@ -11,7 +13,7 @@ export default defineConfig({
         name: 'NASA Robo Pet Station',
         short_name: 'Robo Pet',
         description: 'An educational space adventure for young explorers.',
-        start_url: '/',
+        start_url: '/Nasa-RoboPet-The-4th-dimension/',
         display: 'standalone',
         background_color: '#0b1026',
         theme_color: '#0b1026',
