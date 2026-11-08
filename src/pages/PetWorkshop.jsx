@@ -4,7 +4,7 @@ import RobotPet from "../components/RobotPet";
 import { useGame } from "../context/GameContext";
 import "../styles/PetWorkshop.css";
 
-// Five robot bases inspired by real NASA hardware
+// Five NASA-inspired robot bases
 const robotBases = [
   {
     id: "apollo-rover",
@@ -43,7 +43,7 @@ const robotBases = [
   }
 ];
 
-// Available body colors
+// Six body colors
 const colors = [
   { name: "Cosmic Blue", value: "#55c7ff" },
   { name: "Galaxy Purple", value: "#b58aff" },
@@ -51,6 +51,22 @@ const colors = [
   { name: "Star Yellow", value: "#ffd76a" },
   { name: "Space Orange", value: "#ff994d" },
   { name: "Silver", value: "#c0c0c0" }
+];
+
+// Four independent accessories
+const accessoryOptions = [
+  { name: "Antenna", emoji: "📡" },
+  { name: "Star", emoji: "⭐" },
+  { name: "Planet", emoji: "🪐" },
+  { name: "Rocket", emoji: "🚀" }
+];
+
+// Four personalities
+const personalityOptions = [
+  "Friendly",
+  "Curious",
+  "Brave",
+  "Funny"
 ];
 
 const wheelOptions = [
@@ -73,18 +89,17 @@ const toolOptions = [
 ];
 
 const eyeOptions = [
-  "Blue Eyes",
-  "Green Eyes",
-  "Purple Eyes"
+  { name: "Blue Eyes", value: "#55c7ff" },
+  { name: "Green Eyes", value: "#50dc8c" },
+  { name: "Purple Eyes", value: "#b58aff" }
 ];
 
 export default function PetWorkshop() {
-  // Access the shared application state
   const { player, startGame } = useGame();
 
-  // Restore previously saved robot information when available
   const savedRobot = player?.robot;
 
+  // Restore previously saved customization
   const [petName, setPetName] = useState(
     savedRobot?.name || "Luna"
   );
@@ -99,14 +114,36 @@ export default function PetWorkshop() {
 
     return (
       colors.find((color) =>
-        color.name === (typeof savedColor === "string"
-          ? savedColor
-          : savedColor?.name)
+        color.name === (
+          typeof savedColor === "string"
+            ? savedColor
+            : savedColor?.name
+        )
       ) ||
       colors.find((color) => color.value === savedColor?.value) ||
       colors[0]
     );
   });
+
+  const [selectedAccessory, setSelectedAccessory] = useState(() => {
+    const savedAccessory = savedRobot?.accessory;
+
+    return (
+      accessoryOptions.find((item) =>
+        item.name === savedAccessory?.name
+      ) ||
+      accessoryOptions.find((item) =>
+        item.emoji === savedAccessory?.emoji
+      ) ||
+      accessoryOptions[0]
+    );
+  });
+
+  const [personality, setPersonality] = useState(
+    personalityOptions.includes(savedRobot?.personality)
+      ? savedRobot.personality
+      : "Friendly"
+  );
 
   const [wheelType, setWheelType] = useState(
     savedRobot?.wheelType || "Large Wheels"
@@ -120,27 +157,29 @@ export default function PetWorkshop() {
     savedRobot?.tool || "Camera"
   );
 
-  const [eyes, setEyes] = useState(
-    savedRobot?.eyeColor || "Blue Eyes"
-  );
+  const [eyeColor, setEyeColor] = useState(() => {
+    const savedEyeColor = savedRobot?.eyeColor;
 
-  // Save the customized robot in shared player state
+    return (
+      eyeOptions.find((eye) => eye.value === savedEyeColor)?.value ||
+      eyeOptions.find((eye) => eye.name === savedEyeColor)?.value ||
+      eyeOptions[0].value
+    );
+  });
+
+  // Save every customization in the shared player object
   const handleSaveRobot = () => {
     const newRobot = {
       id: player?.robot?.id || "pet-001",
       name: petName.trim() || "My Robo-Pal",
       baseId: selectedBase.id,
       color: selectedColor,
-      accessory: {
-        name: selectedBase.name,
-        emoji: selectedBase.emoji
-      },
-      personality: "Friendly",
-      bodyColor: selectedColor.name,
-      wheelType: wheelType,
-      antenna: antenna,
-      tool: tool,
-      eyeColor: eyes
+      accessory: selectedAccessory,
+      personality,
+      wheelType,
+      antenna,
+      tool,
+      eyeColor
     };
 
     startGame({
@@ -151,13 +190,8 @@ export default function PetWorkshop() {
     alert("Your Robo-Pal has been saved!");
   };
 
-  // Convert eye-color selection into a display color
-  const eyeColorValue =
-    eyes === "Blue Eyes"
-      ? "#55c7ff"
-      : eyes === "Green Eyes"
-        ? "#50dc8c"
-        : "#b58aff";
+  const selectedEyeName =
+    eyeOptions.find((eye) => eye.value === eyeColor)?.name || "Blue Eyes";
 
   return (
     <main className="pet-workshop">
@@ -172,7 +206,7 @@ export default function PetWorkshop() {
 
       <div className="pet-workshop-layout">
 
-        {/* LEFT SIDE: Robot Preview */}
+        {/* LEFT SIDE: LIVE ROBOT PREVIEW */}
         <section className="pet-preview-section">
           <h2>Your Robo-Pal</h2>
 
@@ -180,12 +214,13 @@ export default function PetWorkshop() {
             <RobotPet
               nickname={petName}
               color={selectedColor.value}
-              accessory={selectedBase.emoji}
-              personality="Friendly"
+              accessory={selectedAccessory.emoji}
+              personality={personality}
+              baseId={selectedBase.id}
               wheelType={wheelType}
               antennaType={antenna}
               tool={tool}
-              eyeColor={eyeColorValue}
+              eyeColor={eyeColor}
             />
           </div>
 
@@ -193,15 +228,17 @@ export default function PetWorkshop() {
             <h3>{petName || "Your Robo-Pal"}</h3>
             <p>{selectedBase.name}</p>
             <p>{selectedBase.inspiration}</p>
+            <p>Accessory: {selectedAccessory.name}</p>
+            <p>Personality: {personality}</p>
             <p>Body color: {selectedColor.name}</p>
             <p>Wheels / Legs: {wheelType}</p>
             <p>Antenna: {antenna}</p>
             <p>Tool: {tool}</p>
-            <p>Eyes: {eyes}</p>
+            <p>Eyes: {selectedEyeName}</p>
           </div>
         </section>
 
-        {/* RIGHT SIDE: Customization */}
+        {/* RIGHT SIDE: CUSTOMIZATION */}
         <section className="pet-customization-section">
 
           <h2>1. Name Your Robo-Pal</h2>
@@ -214,6 +251,7 @@ export default function PetWorkshop() {
             maxLength={20}
           />
 
+          {/* ROBOT BASE */}
           <h2>2. Choose a Robot Base</h2>
 
           <div className="pet-base-options">
@@ -226,6 +264,7 @@ export default function PetWorkshop() {
                     ? "pet-option selected"
                     : "pet-option"
                 }
+                aria-pressed={selectedBase.id === base.id}
                 onClick={() => setSelectedBase(base)}
               >
                 <span>{base.emoji}</span>
@@ -235,6 +274,7 @@ export default function PetWorkshop() {
             ))}
           </div>
 
+          {/* BODY COLOR */}
           <h2>3. Choose a Body Color</h2>
 
           <div className="pet-color-options">
@@ -248,16 +288,63 @@ export default function PetWorkshop() {
                     : "pet-color"
                 }
                 style={{ backgroundColor: color.value }}
-                onClick={() => setSelectedColor(color)}
                 aria-label={color.name}
+                aria-pressed={selectedColor.name === color.name}
                 title={color.name}
+                onClick={() => setSelectedColor(color)}
               />
             ))}
           </div>
 
           <p>Selected: {selectedColor.name}</p>
 
-          <h2>4. Choose Wheels or Legs</h2>
+          {/* INDEPENDENT ACCESSORY */}
+          <h2>4. Choose an Accessory</h2>
+
+          <div className="pet-accessory-options">
+            {accessoryOptions.map((accessory) => (
+              <button
+                key={accessory.name}
+                type="button"
+                className={
+                  selectedAccessory.name === accessory.name
+                    ? "pet-accessory-option selected"
+                    : "pet-accessory-option"
+                }
+                aria-pressed={
+                  selectedAccessory.name === accessory.name
+                }
+                onClick={() => setSelectedAccessory(accessory)}
+              >
+                <span>{accessory.emoji}</span>
+                <strong>{accessory.name}</strong>
+              </button>
+            ))}
+          </div>
+
+          {/* PERSONALITY */}
+          <h2>5. Choose a Personality</h2>
+
+          <div className="pet-personality-options">
+            {personalityOptions.map((option) => (
+              <button
+                key={option}
+                type="button"
+                className={
+                  personality === option
+                    ? "pet-personality-option selected"
+                    : "pet-personality-option"
+                }
+                aria-pressed={personality === option}
+                onClick={() => setPersonality(option)}
+              >
+                {option}
+              </button>
+            ))}
+          </div>
+
+          {/* WHEELS OR LEGS */}
+          <h2>6. Choose Wheels or Legs</h2>
 
           <select
             value={wheelType}
@@ -270,7 +357,8 @@ export default function PetWorkshop() {
             ))}
           </select>
 
-          <h2>5. Choose an Antenna</h2>
+          {/* ANTENNA */}
+          <h2>7. Choose an Antenna Type</h2>
 
           <select
             value={antenna}
@@ -283,7 +371,8 @@ export default function PetWorkshop() {
             ))}
           </select>
 
-          <h2>6. Choose a Tool</h2>
+          {/* TOOL */}
+          <h2>8. Choose a Tool</h2>
 
           <select
             value={tool}
@@ -296,20 +385,32 @@ export default function PetWorkshop() {
             ))}
           </select>
 
-          <h2>7. Choose Eye Color</h2>
+          {/* EYE COLOR */}
+          <h2>9. Choose Eye Color</h2>
 
-          <select
-            value={eyes}
-            onChange={(event) => setEyes(event.target.value)}
-          >
-            {eyeOptions.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
+          <div className="pet-eye-options">
+            {eyeOptions.map((eye) => (
+              <button
+                key={eye.name}
+                type="button"
+                className={
+                  eyeColor === eye.value
+                    ? "pet-eye-option selected"
+                    : "pet-eye-option"
+                }
+                aria-pressed={eyeColor === eye.value}
+                onClick={() => setEyeColor(eye.value)}
+              >
+                <span
+                  className="pet-eye-swatch"
+                  style={{ backgroundColor: eye.value }}
+                />
+                {eye.name}
+              </button>
             ))}
-          </select>
+          </div>
 
-          {/* SAVE ROBOT BUTTON */}
+          {/* SAVE BUTTON */}
           <button
             type="button"
             className="save-pet-button"

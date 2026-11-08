@@ -5,24 +5,24 @@ import "../styles/TradingCard.css";
 const hardwareDetails = {
   "apollo-rover": {
     name: "Apollo Lunar Roving Vehicle",
-    inspiration: "Inspired by the vehicle astronauts used to explore the Moon."
+    inspiration: "Inspired by the lunar vehicle used by astronauts during Apollo missions.",
   },
   sojourner: {
     name: "Sojourner Mars Rover",
-    inspiration: "Inspired by NASA's first successful Mars rover."
+    inspiration: "Inspired by NASA's first successful Mars rover.",
   },
   "spirit-opportunity": {
-    name: "Mars Exploration Rover",
-    inspiration: "Inspired by NASA's Spirit and Opportunity rovers."
+    name: "Spirit and Opportunity Mars Rovers",
+    inspiration: "Inspired by the twin rovers that explored the surface of Mars.",
   },
   ingenuity: {
     name: "Ingenuity Mars Helicopter",
-    inspiration: "Inspired by the helicopter that demonstrated powered flight on Mars."
+    inspiration: "Inspired by the helicopter that demonstrated powered flight on Mars.",
   },
   voyager: {
     name: "Voyager Spacecraft",
-    inspiration: "Inspired by NASA's spacecraft that explored the outer Solar System."
-  }
+    inspiration: "Inspired by NASA's spacecraft that explored the outer Solar System.",
+  },
 };
 
 export default function TradingCard({ player, mission }) {
@@ -33,8 +33,8 @@ export default function TradingCard({ player, mission }) {
       <main className="trading-card-page">
         <h1>Your Trading Card</h1>
         <p>
-          Your robot and mission information will appear here
-          once they are available.
+          Your robot and mission information will appear here once they
+          are available.
         </p>
       </main>
     );
@@ -42,7 +42,7 @@ export default function TradingCard({ player, mission }) {
 
   const hardware = hardwareDetails[robot.baseId] || {
     name: "Space Explorer Robot",
-    inspiration: "Inspired by real space exploration technology."
+    inspiration: "Inspired by real space exploration technology.",
   };
 
   const robotColor =
@@ -50,32 +50,28 @@ export default function TradingCard({ player, mission }) {
       ? robot.color
       : robot.color?.value || "#55c7ff";
 
+  const colorName =
+    typeof robot.color === "object"
+      ? robot.color?.name || "Custom Color"
+      : robot.color || "Default Color";
+
   const robotAccessory =
     typeof robot.accessory === "string"
       ? robot.accessory
       : robot.accessory?.emoji || "📡";
 
-  const wheelLabels = {
-    small: "Small Wheels",
-    large: "Large Wheels",
-    legs: "Robot Legs"
-  };
+  const accessoryName =
+    typeof robot.accessory === "object"
+      ? robot.accessory?.name || "Accessory"
+      : robot.accessory || "Accessory";
 
-  const antennaLabels = {
-    radio: "Radio Antenna",
-    satellite: "Satellite Antenna",
-    none: "No Antenna"
-  };
-
-  const toolLabels = {
-    camera: "Camera",
-    drill: "Drill",
-    sensor: "Scientific Sensor",
-    solar: "Solar Panel"
-  };
+  const wheelType = robot.wheelType || "Large Wheels";
+  const antenna = robot.antenna || "Radio Antenna";
+  const tool = robot.tool || "Camera";
+  const eyeColor = robot.eyeColor || "#55c7ff";
 
   const facts = Array.isArray(mission.facts)
-    ? mission.facts.slice(0, 2)
+    ? mission.facts.slice(0, 3)
     : [];
 
   return (
@@ -93,16 +89,22 @@ export default function TradingCard({ player, mission }) {
         </div>
 
         <section className="trading-card-pet">
-          <h2>{robot.name || player.nickname || "My Robo-Pal"}</h2>
+          <h2>{robot.name || "My Robo-Pal"}</h2>
+
+          <p>
+            Created by: {player.nickname || "Space Explorer"}
+          </p>
 
           <RobotPet
             nickname={robot.name || player.nickname}
             color={robotColor}
             accessory={robotAccessory}
             personality={robot.personality || "Friendly"}
-            wheelType={wheelLabels[robot.wheelType] || robot.wheelType || "Large Wheels"}
-            antennaType={antennaLabels[robot.antenna] || robot.antenna || "Radio Antenna"}
-            tool={toolLabels[robot.tool] || robot.tool || "Camera"}
+            baseId={robot.baseId}
+            wheelType={wheelType}
+            antennaType={antenna}
+            tool={tool}
+            eyeColor={eyeColor}
           />
         </section>
 
@@ -112,16 +114,31 @@ export default function TradingCard({ player, mission }) {
           <p>{hardware.inspiration}</p>
         </section>
 
+        <section className="trading-card-details">
+          <h3>My Robot's Design</h3>
+
+          <ul>
+            <li><strong>Body Color:</strong> {colorName}</li>
+            <li><strong>Eye Color:</strong> {eyeColor}</li>
+            <li><strong>Wheels / Movement:</strong> {wheelType}</li>
+            <li><strong>Antenna:</strong> {antenna}</li>
+            <li><strong>Tool:</strong> {tool}</li>
+            <li><strong>Accessory:</strong> {accessoryName} {robotAccessory}</li>
+            <li><strong>Personality:</strong> {robot.personality || "Friendly"}</li>
+          </ul>
+        </section>
+
         <section className="trading-card-mission">
           <h3>Mission Information</h3>
           <h4>{mission.name}</h4>
           <p>
-            <strong>Location:</strong> {mission.location || "Not available"}
+            <strong>Location:</strong>{" "}
+            {mission.location || "Not available"}
           </p>
         </section>
 
         <section className="trading-card-facts">
-          <h3>Two Amazing Mission Facts</h3>
+          <h3>Mission Facts</h3>
 
           {facts.length > 0 ? (
             <ul>
