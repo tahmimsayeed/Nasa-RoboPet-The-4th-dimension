@@ -1,0 +1,230 @@
+
+/* =====================================
+   TRADING CARD PAGE
+===================================== */
+
+.trading-card-page {
+  min-height: 100vh;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #10132b;
+  color: #f5f3ff;
+  font-family: "Courier New", monospace;
+}
+
+.trading-card-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.trading-card-header > p:first-child {
+  color: #55c7ff;
+  font-size: 13px;
+  letter-spacing: 3px;
+  font-weight: bold;
+}
+
+.trading-card-header h1 {
+  margin: 12px 0;
+  color: #ffd76a;
+  font-size: clamp(24px, 5vw, 36px);
+}
+
+.trading-card-header p:last-child {
+  color: #c9c8e8;
+  font-size: 14px;
+}
+
+/* =====================================
+   MAIN COLLECTIBLE CARD
+===================================== */
+
+.trading-card {
+  width: 100%;
+  max-width: 480px;
+  padding: 22px;
+  border: 4px solid #55c7ff;
+  border-radius: 18px;
+  background: linear-gradient(145deg, #29265b, #171a3b);
+  box-shadow: 0 0 25px rgba(85, 199, 255, 0.25);
+}
+
+.trading-card-top {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-bottom: 14px;
+  border-bottom: 2px dashed #7776bd;
+  color: #ffd76a;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* =====================================
+   ROBOT SECTION
+===================================== */
+
+.trading-card-pet {
+  text-align: center;
+  padding: 20px 10px;
+  margin-bottom: 18px;
+  border: 2px solid #7776bd;
+  border-radius: 12px;
+  background: rgba(12, 15, 43, 0.65);
+}
+
+.trading-card-pet h2 {
+  color: #55c7ff;
+  font-size: 25px;
+  margin-bottom: 12px;
+}
+
+.trading-card-pet .robot-pet-container {
+  margin: 10px auto;
+}
+
+/* =====================================
+   HARDWARE AND MISSION INFORMATION
+===================================== */
+
+.trading-card-hardware,
+.trading-card-mission,
+.trading-card-facts {
+  padding: 15px;
+  margin-bottom: 14px;
+  border-radius: 10px;
+  background: rgba(85, 199, 255, 0.08);
+  border: 1px solid #55558e;
+}
+
+.trading-card h3 {
+  margin-bottom: 10px;
+  color: #ffd76a;
+  font-size: 16px;
+}
+
+.trading-card-hardware h4,
+.trading-card-mission h4 {
+  margin-bottom: 8px;
+  color: #55c7ff;
+  font-size: 15px;
+}
+
+.trading-card-hardware p,
+.trading-card-mission p {
+  color: #e0defa;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.trading-card-mission strong {
+  color: #ffd76a;
+}
+
+/* =====================================
+   MISSION FACTS
+===================================== */
+
+.trading-card-facts ul {
+  padding-left: 22px;
+}
+
+.trading-card-facts li {
+  margin-bottom: 10px;
+  color: #e0defa;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* =====================================
+   CARD FOOTER
+===================================== */
+
+.trading-card-footer {
+  padding-top: 14px;
+  border-top: 2px dashed #7776bd;
+  color: #a9a7d6;
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+/* =====================================
+   PRINT BUTTON
+===================================== */
+
+.print-card-button {
+  margin-top: 25px;
+  padding: 13px 24px;
+  border: 2px solid #55c7ff;
+  border-radius: 8px;
+  background: #55c7ff;
+  color: #10132b;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.print-card-button:hover {
+  background: #ffd76a;
+  border-color: #ffd76a;
+  transform: translateY(-2px);
+}
+
+/* =====================================
+   PRINT-FRIENDLY LAYOUT
+===================================== */
+
+@media print {
+  body {
+    background: white !important;
+  }
+
+  .trading-card-page {
+    min-height: auto;
+    padding: 0;
+    background: white !important;
+    color: black !important;
+  }
+
+  .trading-card-header {
+    display: none;
+  }
+
+  .trading-card {
+    max-width: 100%;
+    color: black;
+    background: white !important;
+    border: 2px solid #333;
+    box-shadow: none;
+    break-inside: avoid;
+  }
+
+  .trading-card h2,
+  .trading-card h3,
+  .trading-card h4,
+  .trading-card p,
+  .trading-card li,
+  .trading-card-footer,
+  .trading-card-top {
+    color: black !important;
+  }
+
+  .trading-card-pet,
+  .trading-card-hardware,
+  .trading-card-mission,
+  .trading-card-facts {
+    background: white !important;
+    border-color: #777;
+  }
+
+  .print-card-button {
+    display: none;
+  }
+}
