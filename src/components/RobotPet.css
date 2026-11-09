@@ -1,0 +1,397 @@
+
+.robot-pet-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 25px 10px;
+  min-width: 0;
+}
+
+.robot-speech {
+  background: #f5f3ff;
+  color: #10132b;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+  text-align: center;
+  max-width: 260px;
+  margin-bottom: 25px;
+  min-height: 40px;
+}
+
+.robot-preview-accessory {
+  font-size: 30px;
+  min-height: 38px;
+  margin-bottom: 5px;
+}
+
+.robot-pet {
+  --robot-color: #55c7ff;
+  --eye-color: #55c7ff;
+  position: relative;
+  width: 180px;
+  height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  outline-offset: 6px;
+}
+
+.robot-pet:hover {
+  transform: translateY(-4px);
+}
+
+.robot-head {
+  position: relative;
+  z-index: 2;
+  width: 112px;
+  height: 75px;
+  background: var(--robot-color);
+  border: 5px solid #25264b;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.robot-face {
+  width: 78px;
+  height: 48px;
+  background: #10132b;
+  border: 3px solid #25264b;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  position: relative;
+}
+
+.robot-eye {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--eye-color);
+  box-shadow: 0 0 8px var(--eye-color);
+}
+
+.robot-smile {
+  position: absolute;
+  width: 18px;
+  height: 8px;
+  border-bottom: 2px solid white;
+  border-radius: 50%;
+  bottom: 5px;
+}
+
+.robot-ear {
+  position: absolute;
+  width: 12px;
+  height: 25px;
+  background: #ffd76a;
+  border: 3px solid #25264b;
+  top: 20px;
+}
+
+.robot-ear.left {
+  left: -13px;
+}
+
+.robot-ear.right {
+  right: -13px;
+}
+
+.robot-body {
+  position: relative;
+  z-index: 1;
+  width: 92px;
+  height: 78px;
+  margin-top: 5px;
+  background: var(--robot-color);
+  border: 5px solid #25264b;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.robot-chest {
+  font-size: 26px;
+  color: #ffd76a;
+}
+
+.robot-tool {
+  position: absolute;
+  right: -23px;
+  bottom: 5px;
+  font-size: 25px;
+}
+
+.robot-arm {
+  position: absolute;
+  top: 100px;
+  width: 19px;
+  height: 55px;
+  background: var(--robot-color);
+  border: 4px solid #25264b;
+  border-radius: 12px;
+  transform-origin: top center;
+}
+
+.robot-arm.left {
+  left: 22px;
+  transform: rotate(15deg);
+}
+
+.robot-arm.right {
+  right: 22px;
+  transform: rotate(-15deg);
+}
+
+.robot-feet {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  width: 78px;
+}
+
+.robot-feet span {
+  width: 28px;
+  height: 24px;
+  background: #ffd76a;
+  border: 4px solid #25264b;
+  border-radius: 7px;
+}
+
+/* Antenna styles */
+.robot-antenna {
+  position: absolute;
+  top: -30px;
+  width: 5px;
+  height: 30px;
+  background: #ffd76a;
+  border: 1px solid #25264b;
+}
+
+.robot-antenna span {
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  background: #ff6b9d;
+  border: 3px solid #25264b;
+  border-radius: 50%;
+  top: -10px;
+  left: -5px;
+}
+
+.antenna-satellite {
+  height: 22px;
+  transform: rotate(25deg);
+}
+
+.antenna-satellite span {
+  width: 19px;
+  height: 10px;
+  border-radius: 4px;
+  background: #55c7ff;
+  top: -7px;
+  left: -8px;
+}
+
+.antenna-hidden {
+  display: none;
+}
+
+/* Wheel variations */
+.robot-feet.wheels-small span {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+}
+
+.robot-feet.wheels-large span {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+}
+
+.robot-feet.robot-legs {
+  width: 85px;
+  bottom: 0;
+}
+
+.robot-feet.robot-legs span {
+  width: 17px;
+  height: 38px;
+  border-radius: 5px;
+}
+
+/* Apollo: wide lunar rover shape */
+.robot-pet.design-apollo .robot-body {
+  width: 115px;
+  height: 65px;
+  border-radius: 8px;
+}
+
+.robot-pet.design-apollo .robot-head {
+  width: 85px;
+  height: 62px;
+  border-radius: 10px;
+}
+
+.robot-pet.design-apollo .robot-feet {
+  width: 125px;
+  bottom: -3px;
+}
+
+/* Sojourner: compact six-wheel rover */
+.robot-pet.design-sojourner .robot-head {
+  width: 88px;
+  height: 58px;
+  border-radius: 8px;
+}
+
+.robot-pet.design-sojourner .robot-body {
+  width: 105px;
+  height: 75px;
+  border-radius: 5px;
+}
+
+.robot-pet.design-sojourner .robot-feet {
+  width: 145px;
+}
+
+.robot-pet.design-sojourner .robot-feet span {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  box-shadow: -30px 0 0 -2px #ffd76a, 30px 0 0 -2px #ffd76a;
+}
+
+/* Spirit and Opportunity: tall exploration rover */
+.robot-pet.design-spirit .robot-head {
+  width: 105px;
+  height: 65px;
+  border-radius: 12px 12px 5px 5px;
+}
+
+.robot-pet.design-spirit .robot-body {
+  width: 78px;
+  height: 88px;
+  border-radius: 8px;
+}
+
+.robot-pet.design-spirit .robot-feet {
+  width: 125px;
+}
+
+/* Ingenuity: helicopter-inspired design */
+.robot-pet.design-ingenuity .robot-head {
+  width: 75px;
+  height: 55px;
+  border-radius: 50%;
+}
+
+.robot-pet.design-ingenuity .robot-body {
+  width: 75px;
+  height: 85px;
+  border-radius: 12px;
+}
+
+.robot-pet.design-ingenuity::before {
+  content: "";
+  position: absolute;
+  top: -32px;
+  width: 145px;
+  height: 7px;
+  background: #ffd76a;
+  border: 3px solid #25264b;
+  border-radius: 5px;
+}
+
+.robot-pet.design-ingenuity .robot-feet {
+  width: 100px;
+}
+
+.robot-pet.design-ingenuity .robot-feet span {
+  width: 42px;
+  height: 7px;
+  border-radius: 5px;
+}
+
+/* Voyager: spacecraft-inspired design */
+.robot-pet.design-voyager .robot-head {
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+}
+
+.robot-pet.design-voyager .robot-body {
+  width: 100px;
+  height: 75px;
+  border-radius: 50%;
+}
+
+.robot-pet.design-voyager .robot-ear {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  top: 25px;
+}
+
+.robot-pet.design-voyager .robot-feet span {
+  width: 35px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+/* Interaction */
+.robot-pet.waving .robot-arm.right {
+  animation: robot-wave 0.3s ease-in-out 3;
+}
+
+@keyframes robot-wave {
+  0%, 100% {
+    transform: rotate(-15deg);
+  }
+  50% {
+    transform: rotate(-100deg);
+  }
+}
+
+.robot-name {
+  color: #ffd76a;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+  margin-top: 15px;
+  text-align: center;
+}
+
+.robot-base-name {
+  color: #b8b8d8;
+  font-family: "Courier New", monospace;
+  font-size: 12px;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.robot-hint {
+  color: #55c7ff;
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  margin-top: 8px;
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  .robot-pet {
+    transform: scale(0.9);
+    transform-origin: top center;
+    margin-bottom: -15px;
+  }
+}
