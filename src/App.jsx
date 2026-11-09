@@ -2,7 +2,8 @@
 import { useState } from "react";
 import { GameProvider, useGame } from "./context/GameContext";
 import Welcome from "./pages/Welcome";
-import Workshop from "./pages/Workshop";
+import PetWorkshop from "./pages/PetWorkshop";
+import TradingCard from "./pages/TradingCard";
 import MissionArchive from "./pages/MissionArchive";
 import MissionActivity from "./pages/MissionActivity";
 import MarsMissionActivity from "./pages/MarsMissionActivity";
@@ -22,7 +23,7 @@ function GameScreen() {
   });
 
   const [selectedMission, setSelectedMission] = useState(null);
-
+  const [showTradingCard, setShowTradingCard] = useState(false);
   const handleWorkshopComplete = (updatedPlayer) => {
     startGame(updatedPlayer);
   };
@@ -32,15 +33,16 @@ function GameScreen() {
     const completedMissions = player.completedMissions || [];
 
     const updatedPlayer = {
-      ...player,
-      completedMissions: completedMissions.includes(missionId)
-        ? completedMissions
-        : [...completedMissions, missionId],
-      missionScores: {
-        ...(player.missionScores || {}),
-        [missionId]: missionScore,
-      },
-    };
+     ...player,
+     lastCompletedMissionId: missionId,
+     completedMissions: completedMissions.includes(missionId)
+      ? completedMissions
+      : [...completedMissions, missionId],
+     missionScores: {
+       ...(player.missionScores || {}),
+       [missionId]: missionScore,
+  },
+};
 
     startGame(updatedPlayer);
 setShowArchive(false);
@@ -53,16 +55,47 @@ setShowArchive(false);
   };
 const allMissionsCompleted =
   (player?.completedMissions?.length || 0) === 3;
-  return (
-    <SpaceBackground>
-      {!player ? (
-        <Welcome onStart={startGame} />
-      ) : !player.robot ? (
-        <Workshop
-          player={player}
-          onComplete={handleWorkshopComplete}
-        />
-      ) : selectedMission ? (
+  const tradingCardMissions = {
+  1: {
+    name: "Moon Explorer",
+    location: "The Moon",
+    facts: [
+      "The Moon is Earth's natural satellite.",
+      "The Moon reflects sunlight rather than producing its own light.",
+      "The Moon has a rocky surface with craters caused by impacts.",
+    ],
+  },
+  2: {
+    name: "Mars Adventure",
+    location: "Mars",
+    facts: [
+      "Iron-rich minerals give Mars its reddish color.",
+      "Mars has two moons: Phobos and Deimos.",
+      "Olympus Mons is the largest known volcano in our Solar System.",
+    ],
+  },
+  3: {
+    name: "Galaxy Guardian",
+    location: "The Milky Way Galaxy",
+    facts: [
+      "Galaxies contain billions or even trillions of stars.",
+      "Our Solar System is inside the Milky Way Galaxy.",
+      "Black holes have extremely strong gravity.",
+    ],
+  },
+};
+const lastMissionId =
+  player?.lastCompletedMissionId ??
+  player?.completedMissions?.at(-1);
+
+const tradingCardMission = tradingCardMissions[lastMissionId];
+return (
+  <SpaceBackground>
+    {!player ? (
+      <Welcome onStart={startGame} />
+    ) : !player.robot ? (
+      <PetWorkshop />
+    ) : selectedMission ? (
         selectedMission.id === 1 ? (
           <MissionActivity
             player={player}
@@ -91,8 +124,18 @@ const allMissionsCompleted =
             </section>
           </main>
         )
-     ) : !showArchive && allMissionsCompleted ? (
-        <main className="welcome-screen">
+) : showTradingCard && tradingCardMission ? (
+  <>
+    <TradingCard
+      player={player}
+      mission={tradingCardMission}
+    />
+    <PixelButton onClick={() => setShowTradingCard(false)}>
+      Back to Robo-Pal
+    </PixelButton>
+  </>
+) : !showArchive && allMissionsCompleted ? (
+          <main className="welcome-screen">
           <section className="welcome-card">
             <p className="welcome-label"> ROBO PET STATION</p>
             <h1 className="champion-title">
@@ -110,6 +153,11 @@ const allMissionsCompleted =
               progress={100}
               label="Adventure Progress: 3/3 — 100%"
             />
+            {tradingCardMission && (
+             <PixelButton onClick={() => setShowTradingCard(true)}>
+              View My Trading Card
+             </PixelButton>
+)}
 
             <PixelButton onClick={() => setShowArchive(true)}>
                Replay Missions
@@ -150,7 +198,11 @@ const allMissionsCompleted =
               progress={((player.completedMissions?.length || 0) / 3) * 100}
               label={`Adventure Progress: ${player.completedMissions?.length || 0}/3`}
             />
-
+            {tradingCardMission && (
+             <PixelButton onClick={() => setShowTradingCard(true)}>
+              View My Trading Card
+             </PixelButton>
+            )}
             <PixelButton onClick={() => setShowArchive(true)}>
               Continue to Mission Archive
             </PixelButton>
