@@ -1,0 +1,209 @@
+
+.museum-page {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 30px 16px;
+}
+
+.museum-container {
+  width: 100%;
+  max-width: 1050px;
+  padding: 32px;
+  background: #191d3b;
+  border: 3px solid #55c7ff;
+  border-radius: 16px;
+  color: #f5f3ff;
+  box-shadow: 0 0 20px rgba(85, 199, 255, 0.2);
+}
+
+.museum-label {
+  color: #55c7ff;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.museum-container h1 {
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 14px;
+}
+
+.museum-description {
+  text-align: center;
+  color: #c9c9e8;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+.museum-controls {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.student-section h2,
+.teacher-section h2 {
+  color: #ffd166;
+  margin-bottom: 18px;
+}
+
+.museum-filters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.museum-filters button {
+  padding: 10px 18px;
+  background: #292e56;
+  color: #f5f3ff;
+  border: 2px solid #555b85;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: bold;
+}
+
+.museum-filters button:hover {
+  border-color: #55c7ff;
+}
+
+.museum-filters button.active {
+  background: #254b70;
+  border-color: #55c7ff;
+}
+
+.museum-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.museum-card {
+  padding: 20px;
+  background: #222747;
+  border: 2px solid #444c78;
+  border-radius: 12px;
+  overflow-wrap: anywhere;
+}
+
+.museum-robot {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.museum-card h3 {
+  color: #ffd166;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.museum-card p {
+  color: #d6d8f0;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.museum-card .museum-mission {
+  color: #55c7ff;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.museum-reactions {
+  margin-top: 18px;
+  padding-top: 15px;
+  border-top: 1px solid #444c78;
+}
+
+.museum-reactions p {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.museum-reactions button {
+  margin: 4px;
+  padding: 7px 10px;
+  background: #292e56;
+  border: 1px solid #555b85;
+  border-radius: 8px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.museum-reactions button:hover {
+  background: #3b4674;
+  border-color: #55c7ff;
+}
+
+.reaction-count {
+  margin-top: 10px;
+  color: #ffd166 !important;
+  font-size: 14px;
+}
+
+.museum-empty {
+  padding: 30px 20px;
+  text-align: center;
+  background: #222747;
+  border: 1px dashed #555b85;
+  border-radius: 12px;
+  color: #c9c9e8;
+  line-height: 1.6;
+}
+
+.teacher-notice {
+  padding: 12px;
+  background: #493b25;
+  color: #ffe0a3 !important;
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.approval-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.approval-actions button {
+  flex: 1;
+  min-width: 100px;
+  padding: 10px;
+  border: 1px solid #55c7ff;
+  border-radius: 8px;
+  background: #254b70;
+  color: #ffffff;
+  font-family: inherit;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.approval-actions button:hover {
+  background: #35658f;
+}
+
+@media (max-width: 600px) {
+  .museum-container {
+    padding: 20px 14px;
+  }
+
+  .museum-container h1 {
+    font-size: 24px;
+  }
+
+  .museum-grid {
+    grid-template-columns: 1fr;
+  }
+}

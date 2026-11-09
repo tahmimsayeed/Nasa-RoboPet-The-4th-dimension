@@ -26,7 +26,13 @@ const missions = [
   },
 ];
 
-export default function MissionArchive({ player, onStartMission }) {
+export default function MissionArchive({
+  player,
+  onStartMission,
+  onOpenCreativeMission,
+  onOpenMuseumWall,
+  onOpenMissionDiscovery,
+}) {
   const completedCount = player.completedMissions?.length || 0;
   const progress = (completedCount / missions.length) * 100;
 
@@ -55,25 +61,42 @@ export default function MissionArchive({ player, onStartMission }) {
 
               <p>{mission.description}</p>
 
-       <span className="mission-difficulty">
-         {mission.difficulty}
-       </span>
+              <span className="mission-difficulty">
+                {mission.difficulty}
+              </span>
 
-       {player.completedMissions?.includes(mission.id) && (
-          <div className="mission-completed">
-            ✓ Completed!
-            <p>Score: {player.missionScores?.[mission.id] ?? 0}/3</p>
-       </div>
-)}
-         <PixelButton
-          onClick={() => onStartMission(mission)}
-         >
-          {player.completedMissions?.includes(mission.id)
-              ? "Replay Mission"
-              : "Explore Mission"}
-          </PixelButton>
+              {player.completedMissions?.includes(mission.id) && (
+                <div className="mission-completed">
+                  ✓ Completed!
+                  <p>
+                    Score: {player.missionScores?.[mission.id] ?? 0}/3
+                  </p>
+                </div>
+              )}
+
+              <PixelButton onClick={() => onStartMission(mission)}>
+                {player.completedMissions?.includes(mission.id)
+                  ? "Replay Mission"
+                  : "Explore Mission"}
+              </PixelButton>
+
+              <PixelButton
+                onClick={() => onOpenCreativeMission(mission)}
+              >
+                🎨 Creative Activities
+              </PixelButton>
             </article>
           ))}
+        </div>
+
+               <div className="museum-navigation">
+          <PixelButton onClick={onOpenMissionDiscovery}>
+            🚀 NASA Mission Discovery
+          </PixelButton>
+
+          <PixelButton onClick={onOpenMuseumWall}>
+            🏛️ Visit Class Museum
+          </PixelButton>
         </div>
       </section>
     </main>

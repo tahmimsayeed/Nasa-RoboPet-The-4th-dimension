@@ -5,7 +5,6 @@ import { storageService } from "../services/storageService";
 // Create a shared game context
 const GameContext = createContext(null);
 
-// Provider makes game information available to other components
 export function GameProvider({ children }) {
   const [player, setPlayer] = useState(() => {
     return storageService.getPlayer();
@@ -15,6 +14,67 @@ export function GameProvider({ children }) {
   const startGame = (playerInfo) => {
     storageService.savePlayer(playerInfo);
     setPlayer(playerInfo);
+  };
+
+  // Update player information and save it
+  const updatePlayer = (updatedPlayer) => {
+    if (!updatedPlayer) return;
+
+    storageService.savePlayer(updatedPlayer);
+    setPlayer(updatedPlayer);
+  };
+
+  // Save a new creative submission
+  const saveCreativeWork = (work) => {
+    if (!player) return;
+
+    const updatedPlayer = {
+      ...player,
+      creativeWorks: [
+        ...(player.creativeWorks || []),
+        work,
+      ],
+    };
+
+    updatePlayer(updatedPlayer);
+  };
+
+  // Update an existing creative submission
+  const updateCreativeWork = (workId, updates) => {
+    if (!player) return;
+
+    const updatedPlayer = {
+      ...player,
+      creativeWorks: (player.creativeWorks || []).map((work) =>
+        work.id === workId
+          ? { ...work, ...updates }
+          : work
+      ),
+    };
+
+    updatePlayer(updatedPlayer);
+  };
+
+  // Add a sticker reaction to a creative submission
+  const addCreativeReaction = (workId, sticker) => {
+    if (!player) return;
+
+    const updatedPlayer = {
+      ...player,
+      creativeWorks: (player.creativeWorks || []).map((work) =>
+        work.id === workId
+          ? {
+              ...work,
+              reactions: [
+                ...(work.reactions || []),
+                sticker,
+              ],
+            }
+          : work
+      ),
+    };
+
+    updatePlayer(updatedPlayer);
   };
 
   // Clear player information
@@ -29,6 +89,9 @@ export function GameProvider({ children }) {
         player,
         startGame,
         resetGame,
+        saveCreativeWork,
+        updateCreativeWork,
+        addCreativeReaction,
       }}
     >
       {children}
