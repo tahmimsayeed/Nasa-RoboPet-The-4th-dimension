@@ -1,386 +1,167 @@
-
-.robot-pet-container {
+/* Robo-Pal character system. All selectors are rp-prefixed to avoid
+   collisions with the game's other components and global styles. */
+.rp-container {
+  --rp-outline: #25264b;
+  --rp-metal: #aeb8c9;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
-  padding: 25px 10px;
+  isolation: isolate;
+  width: 100%;
   min-width: 0;
+  padding: 18px 8px 12px;
+  box-sizing: border-box;
 }
-
-.robot-speech {
+.rp-speech {
+  position: relative;
+  z-index: 10;
+  max-width: min(300px, 92%);
+  min-height: 38px;
+  margin: 0 0 8px;
+  padding: 9px 15px;
+  border: 3px solid #55c7ff;
+  border-radius: 12px;
   background: #f5f3ff;
   color: #10132b;
-  padding: 10px 16px;
-  border-radius: 10px;
-  font-family: "Courier New", monospace;
-  font-weight: bold;
+  font: 700 12px/1.35 "Courier New", monospace;
   text-align: center;
-  max-width: 260px;
-  margin-bottom: 25px;
-  min-height: 40px;
+  box-shadow: 3px 3px 0 rgba(0,0,0,.2);
 }
-.robot-preview-accessory {
-  font-size: 30px;
-  min-height: 42px;
-  margin-bottom: 22px;
+.rp-floating-accessory { position: relative; z-index: 8; min-height: 30px; margin: 0 0 5px; font-size: 25px; line-height: 1.2; }
+.rp-robot {
+  --rp-color: #55c7ff;
+  --rp-eye-color: #55c7ff;
   position: relative;
-  z-index: 3;
-}
-
-.robot-pet {
-  --robot-color: #55c7ff;
-  --eye-color: #55c7ff;
-  position: relative;
-  width: 220px;
-  min-height: 0;
-  height: auto;
+  isolation: isolate;
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: min(100%, 300px);
+  min-height: 0;
+  padding: 52px 0 0;
+  box-sizing: border-box;
   cursor: pointer;
-  transition: transform 0.2s ease;
+  transform-origin: center bottom;
+  transition: transform .2s ease;
   outline-offset: 6px;
 }
+.rp-robot:hover { transform: translateY(-3px); }
+.rp-robot:focus-visible { outline: 3px dashed #55c7ff; border-radius: 12px; }
+.rp-head-assembly { position: relative; z-index: 5; display: flex; flex-direction: column; align-items: center; margin-bottom: -3px; }
+.rp-neck { width: 27px; height: 15px; margin-bottom: -3px; border: 4px solid var(--rp-outline); border-bottom: 0; border-radius: 6px 6px 0 0; background: var(--rp-metal); box-sizing: border-box; }
+.rp-head { position: relative; display: flex; align-items: center; justify-content: center; width: 104px; height: 69px; border: 5px solid var(--rp-outline); border-radius: 15px 15px 12px 12px; background: var(--rp-color); box-shadow: inset 0 -7px 0 rgba(0,0,0,.09); box-sizing: border-box; }
+.rp-face { position: relative; display: flex; align-items: center; justify-content: space-evenly; width: 76%; height: 46px; border-radius: 9px; background: #10132b; box-sizing: border-box; }
+.rp-face i { width: 9px; height: 10px; border: 1px solid rgba(255,255,255,.55); border-radius: 2px; background: var(--rp-eye-color); box-shadow: 0 0 7px var(--rp-eye-color); }
+.rp-face b { position: absolute; bottom: 5px; left: 50%; width: 17px; height: 6px; border-bottom: 2px solid #fff; border-radius: 50%; transform: translateX(-50%); }
+.rp-ear { position: absolute; top: 21px; width: 10px; height: 20px; border: 3px solid var(--rp-outline); border-radius: 4px; background: #ffd76a; box-sizing: border-box; }
+.rp-ear-left { left: -11px; }.rp-ear-right { right: -11px; }
+.rp-upper-frame { position: relative; z-index: 3; width: var(--rp-body-width); height: 100px; margin-top: -1px; }
+.rp-body { position: relative; z-index: 3; display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; border: 5px solid var(--rp-outline); border-radius: 13px 13px 9px 9px; background: var(--rp-color); box-shadow: inset 0 -8px 0 rgba(0,0,0,.10); box-sizing: border-box; }
+.rp-body::before { content: ""; position: absolute; top: -8px; left: 50%; width: 48px; height: 12px; border: 3px solid var(--rp-outline); border-radius: 5px 5px 0 0; background: var(--rp-metal); transform: translateX(-50%); box-sizing: border-box; }
+.rp-panel { position: absolute; top: 17px; width: 7px; height: 31px; border: 2px solid var(--rp-outline); border-radius: 3px; background: color-mix(in srgb, var(--rp-color) 65%, white); }
+.rp-panel-left { left: 8px; }.rp-panel-right { right: 8px; }
+.rp-chest-star { position: relative; z-index: 3; display: grid; place-items: center; width: 31px; height: 31px; border: 3px solid var(--rp-outline); border-radius: 7px; background: #ffd76a; color: #25264b; font-size: 17px; box-sizing: border-box; }
+.rp-tool { position: absolute; z-index: 6; right: -12px; bottom: 8px; display: grid; place-items: center; width: 28px; height: 28px; border: 3px solid var(--rp-outline); border-radius: 6px; background: #f5f3ff; font-size: 14px; box-sizing: border-box; }
+.rp-shoulder { position: absolute; z-index: 6; top: 12px; width: 19px; height: 19px; border: 4px solid var(--rp-outline); border-radius: 50%; background: var(--rp-metal); box-sizing: border-box; }
+.rp-shoulder-left { left: -10px; }.rp-shoulder-right { right: -10px; }
+.rp-arm { position: absolute; z-index: 2; top: 24px; width: 17px; height: 53px; border: 4px solid var(--rp-outline); border-radius: 9px; background: var(--rp-color); transform-origin: 50% 8px; box-sizing: border-box; }
+.rp-arm-left { left: -8px; transform: rotate(10deg); }.rp-arm-right { right: -8px; transform: rotate(-10deg); }
+.rp-arm > i { position: absolute; bottom: -8px; left: 50%; width: 20px; height: 17px; border: 3px solid var(--rp-outline); border-radius: 6px 6px 8px 8px; background: var(--rp-metal); transform: translateX(-50%); box-sizing: border-box; }
+.rp-chassis { position: relative; z-index: 4; display: flex; align-items: center; justify-content: space-evenly; flex: 0 0 13px; width: var(--rp-chassis-width); height: 13px; margin-top: -3px; border: 3px solid var(--rp-outline); border-radius: 4px; background: #66758c; box-sizing: border-box; }
+.rp-chassis span { display: block; width: 17%; height: 3px; border-radius: 2px; background: #dce4ef; }
+.rp-wheel-row { position: relative; z-index: 3; display: grid; grid-template-columns: repeat(var(--rp-wheel-count), minmax(0, 1fr)); align-items: start; justify-items: center; gap: 0; width: var(--rp-chassis-width); height: 38px; margin-top: -1px; }
+.rp-wheel { position: relative; display: grid; place-items: center; width: min(var(--rp-wheel-size), 100%); height: min(var(--rp-wheel-size), 100%); border: 4px solid #252b39; border-radius: 50%; background: #414a5a; box-shadow: inset 0 0 0 2px #78869d, 0 2px 0 rgba(0,0,0,.2); box-sizing: border-box; }
+.rp-wheel::before { content: ""; position: absolute; z-index: -1; left: 50%; top: -10px; width: 6px; height: 12px; border: 2px solid var(--rp-outline); border-bottom: 0; border-radius: 3px 3px 0 0; background: var(--rp-metal); transform: translateX(-50%); box-sizing: border-box; }
+.rp-wheel i { width: 9px; height: 9px; border: 2px solid var(--rp-outline); border-radius: 50%; background: var(--rp-color); box-sizing: border-box; }
+.rp-small-wheels .rp-wheel { border-width: 3px; }
+.rp-leg-set { position: relative; width: var(--rp-chassis-width); height: 52px; margin-top: -2px; }
+.rp-leg { position: absolute; top: -1px; width: 13px; height: 43px; border: 3px solid var(--rp-outline); border-radius: 5px; background: var(--rp-metal); transform-origin: 50% 0; box-sizing: border-box; }
+.rp-left-leg { left: 25%; transform: rotate(13deg); }.rp-right-leg { right: 25%; transform: rotate(-13deg); }
+.rp-leg i { position: absolute; bottom: -5px; left: -5px; width: 18px; height: 8px; border: 2px solid var(--rp-outline); border-radius: 4px; background: #78869d; }
 
-.robot-pet:hover {
-  transform: translateY(-4px);
-}
+/* Apollo: broad open lunar-buggy stance, low rectangular rover deck. */
+.rp-apollo { --rp-body-width: 154px; --rp-chassis-width: 184px; padding-top: 53px; }
+.rp-apollo .rp-head { width: 104px; height: 67px; border-radius: 12px 12px 8px 8px; }
+.rp-apollo .rp-body { border-radius: 7px; }
+.rp-apollo .rp-upper-frame { height: 91px; }
+.rp-apollo .rp-apollo-detail { position: absolute; left: 50%; bottom: 11px; width: 58px; height: 9px; border-top: 3px solid #56647b; border-bottom: 3px solid #56647b; transform: translateX(-50%); }
+.rp-apollo-mast { position: absolute; z-index: 7; top: 8px; left: 50%; width: 105px; height: 26px; border-top: 4px solid #dce4ef; transform: translateX(-50%); }
+.rp-apollo-mast::before { content: ""; position: absolute; left: 50%; top: -13px; width: 7px; height: 13px; background: #aeb8c9; transform: translateX(-50%); }
+.rp-apollo-mast span,.rp-apollo-mast i { position: absolute; top: -10px; width: 16px; height: 10px; border: 2px solid var(--rp-outline); border-radius: 3px; background: #ffd76a; }
+.rp-apollo-mast span { left: 4px; }.rp-apollo-mast i { right: 4px; }.rp-apollo-mast b { position: absolute; left: 50%; top: -18px; width: 10px; height: 9px; border: 2px solid var(--rp-outline); border-radius: 3px; background: #55c7ff; transform: translateX(-50%); }
 
-.robot-head {
-  position: relative;
-  z-index: 2;
-  width: 112px;
-  height: 75px;
-  background: var(--robot-color);
-  border: 5px solid #25264b;
-  border-radius: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+/* Sojourner: visibly compact, squat body with six closely spaced wheels. */
+.rp-sojourner { --rp-body-width: 116px; --rp-chassis-width: 164px; padding-top: 62px; }
+.rp-sojourner .rp-head { width: 91px; height: 61px; border-radius: 18px 18px 13px 13px; }
+.rp-sojourner .rp-neck { width: 22px; height: 11px; }
+.rp-sojourner .rp-upper-frame { height: 79px; }
+.rp-sojourner .rp-body { border-radius: 8px; }
+.rp-sojourner .rp-panel { height: 24px; width: 6px; }
+.rp-sojourner .rp-chest-star { width: 27px; height: 27px; }
+.rp-sojourner .rp-sojourner-detail { position: absolute; left: 50%; bottom: 8px; width: 34px; height: 7px; border: 2px solid #56647b; border-radius: 2px; background: #dce4ef; transform: translateX(-50%); }
+.rp-sojourner-mast { position: absolute; z-index: 7; top: 18px; left: 50%; width: 13px; height: 28px; border-left: 4px solid #aeb8c9; border-right: 4px solid #aeb8c9; transform: translateX(-50%); }
+.rp-sojourner-mast span { position: absolute; left: 50%; top: -13px; width: 30px; height: 20px; border: 3px solid var(--rp-outline); border-radius: 4px; background: #ffd76a; transform: translateX(-50%); }
+.rp-sojourner-mast i { position: absolute; left: 50%; top: -7px; width: 7px; height: 7px; border-radius: 50%; background: #55c7ff; transform: translateX(-50%); }
 
-.robot-face {
-  width: 78px;
-  height: 48px;
-  background: #10132b;
-  border: 3px solid #25264b;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  position: relative;
-}
+/* Spirit/Opportunity: taller instrument deck and stereo camera head. */
+.rp-spirit { --rp-body-width: 132px; --rp-chassis-width: 180px; padding-top: 45px; }
+.rp-spirit .rp-head { width: 99px; height: 73px; border-radius: 12px 12px 5px 5px; }
+.rp-spirit .rp-neck { height: 19px; }
+.rp-spirit .rp-upper-frame { height: 112px; }
+.rp-spirit .rp-body { border-radius: 10px 10px 5px 5px; }
+.rp-spirit .rp-panel { height: 38px; }
+.rp-spirit .rp-spirit-detail { position: absolute; left: 50%; bottom: 10px; display: flex; gap: 5px; transform: translateX(-50%); }
+.rp-spirit .rp-spirit-detail i { display: block; width: 13px; height: 8px; border: 2px solid #56647b; border-radius: 2px; background: #dce4ef; }
+.rp-spirit-mast { position: absolute; z-index: 7; top: -2px; left: 50%; width: 11px; height: 45px; border-left: 4px solid #aeb8c9; border-right: 4px solid #aeb8c9; transform: translateX(-50%); }
+.rp-spirit-mast span,.rp-spirit-mast i { position: absolute; top: -12px; width: 19px; height: 17px; border: 3px solid var(--rp-outline); border-radius: 4px; background: #ffd76a; }
+.rp-spirit-mast span { left: -20px; }.rp-spirit-mast i { right: -20px; }.rp-spirit-mast b { position: absolute; left: 50%; top: 12px; width: 20px; height: 8px; border: 2px solid var(--rp-outline); background: #55c7ff; transform: translateX(-50%); }
 
-.robot-eye {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--eye-color);
-  box-shadow: 0 0 8px var(--eye-color);
-}
+/* Ingenuity: helicopter rotor and four landing legs, no rover wheels. */
+.rp-ingenuity { --rp-body-width: 108px; padding-top: 72px; }
+.rp-ingenuity .rp-head { width: 76px; height: 53px; border-radius: 12px; }
+.rp-ingenuity .rp-neck { height: 10px; }
+.rp-ingenuity .rp-upper-frame { height: 78px; }
+.rp-ingenuity .rp-shoulder,.rp-ingenuity .rp-arm { display: none; }
+.rp-ingenuity .rp-body { border-radius: 13px; }
+.rp-helicopter-rotor { position: absolute; z-index: 8; top: 24px; left: 50%; width: 166px; height: 7px; border: 2px solid var(--rp-outline); border-radius: 4px; background: #ffd76a; transform: translateX(-50%); }
+.rp-helicopter-rotor::before { content: ""; position: absolute; left: 50%; top: 3px; width: 9px; height: 32px; border: 2px solid var(--rp-outline); background: #aeb8c9; transform: translateX(-50%); }
+.rp-helicopter-rotor span,.rp-helicopter-rotor i { position: absolute; top: -5px; width: 10px; height: 10px; border: 2px solid var(--rp-outline); border-radius: 50%; background: #55c7ff; }
+.rp-helicopter-rotor span { left: -4px; }.rp-helicopter-rotor i { right: -4px; }
+.rp-ingenuity-detail { position: absolute; left: 50%; top: 12px; width: 48px; height: 15px; border: 3px solid var(--rp-outline); border-radius: 4px; background: #dce4ef; transform: translateX(-50%); }
+.rp-landing-gear { position: relative; width: 110px; height: 43px; margin-top: -3px; }
+.rp-landing-gear span { position: absolute; top: 0; width: 7px; height: 37px; border: 2px solid var(--rp-outline); border-radius: 3px; background: #aeb8c9; }
+.rp-landing-gear span:nth-child(1) { left: 12px; transform: rotate(18deg); }.rp-landing-gear span:nth-child(2) { left: 34px; transform: rotate(-18deg); }.rp-landing-gear span:nth-child(3) { right: 34px; transform: rotate(18deg); }.rp-landing-gear span:nth-child(4) { right: 12px; transform: rotate(-18deg); }
 
-.robot-smile {
-  position: absolute;
-  width: 18px;
-  height: 8px;
-  border-bottom: 2px solid white;
-  border-radius: 50%;
-  bottom: 5px;
-}
+/* Voyager: large high-gain dish, bus and two broad instrument booms. */
+.rp-voyager { --rp-body-width: 120px; padding-top: 88px; }
+.rp-voyager .rp-head { width: 70px; height: 70px; border-radius: 50%; }
+.rp-voyager .rp-face { width: 62%; height: 38px; }
+.rp-voyager .rp-neck { height: 9px; }
+.rp-voyager .rp-upper-frame { height: 84px; }
+.rp-voyager .rp-shoulder,.rp-voyager .rp-arm { display: none; }
+.rp-voyager .rp-body { border-radius: 18px 18px 8px 8px; }
+.rp-voyager-dish { position: absolute; z-index: 8; top: 7px; left: 50%; width: 82px; height: 82px; border: 5px solid var(--rp-outline); border-radius: 50%; background: #e7edf5; transform: translateX(-50%); box-sizing: border-box; }
+.rp-voyager-dish::before { content: ""; position: absolute; left: 36px; top: 32px; width: 7px; height: 27px; border: 2px solid var(--rp-outline); background: #aeb8c9; transform: rotate(-34deg); }
+.rp-voyager-dish span { position: absolute; left: 50%; top: 50%; width: 9px; height: 9px; border: 2px solid var(--rp-outline); border-radius: 50%; background: #ffd76a; transform: translate(-50%,-50%); }
+.rp-voyager-boom { position: absolute; top: 52%; right: -39px; width: 43px; height: 6px; border: 2px solid var(--rp-outline); background: #aeb8c9; transform: rotate(-18deg); }
+.rp-voyager-panels { position: relative; width: 178px; height: 34px; margin-top: -2px; }
+.rp-voyager-panels span { position: absolute; top: 0; width: 64px; height: 26px; border: 3px solid var(--rp-outline); background: #6489b8; box-sizing: border-box; }
+.rp-voyager-panels span:first-child { left: 0; transform: skewY(12deg); }.rp-voyager-panels span:last-child { right: 0; transform: skewY(-12deg); }
 
-.robot-ear {
-  position: absolute;
-  width: 12px;
-  height: 25px;
-  background: #ffd76a;
-  border: 3px solid #25264b;
-  top: 20px;
-}
-
-.robot-ear.left {
-  left: -13px;
-}
-
-.robot-ear.right {
-  right: -13px;
-}
-
-.robot-body {
-  position: relative;
-  z-index: 1;
-  width: 92px;
-  height: 78px;
-  margin-top: 3px;
-  background: var(--robot-color);
-  border: 5px solid #25264b;
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.robot-chest {
-  position: relative;
-  z-index: 2;
-  font-size: 26px;
-  color: #ffd76a;
-}
-
-.robot-tool {
-  position: absolute;
-  right: -23px;
-  bottom: 5px;
-  font-size: 25px;
-}
-.robot-arm {
-  position: absolute;
-  top: 16px;
-  width: 19px;
-  height: 43px;
-  background: var(--robot-color);
-  border: 4px solid #25264b;
-  border-radius: 12px;
-  transform-origin: top center;
-  z-index: 1;
-}
-
-.robot-arm.left {
-  left: -13px;
-  transform: rotate(15deg);
-}
-
-.robot-arm.right {
-  right: -13px;
-  transform: rotate(-15deg);
-}
-
-/* Antenna styles */
-.robot-antenna {
-  position: absolute;
-  top: -20px;
-  width: 5px;
-  height: 30px;
-  background: #ffd76a;
-  border: 1px solid #25264b;
-}
-
-.robot-antenna span {
-  position: absolute;
-  width: 13px;
-  height: 13px;
-  background: #ff6b9d;
-  border: 3px solid #25264b;
-  border-radius: 50%;
-  top: -10px;
-  left: -5px;
-}
-
-.antenna-satellite {
-  height: 22px;
-  transform: rotate(25deg);
-}
-
-.antenna-satellite span {
-  width: 19px;
-  height: 10px;
-  border-radius: 4px;
-  background: #55c7ff;
-  top: -7px;
-  left: -8px;
-}
-
-.antenna-hidden {
-  display: none;
-}
-
-/* Wheel variations */
-.robot-feet.wheels-small span {
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-}
-
-.robot-feet.wheels-large span {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-}
-
-.robot-feet.robot-legs {
-  width: 85px;
-}
-
-.robot-feet.robot-legs span {
-  width: 17px;
-  height: 38px;
-  border-radius: 5px;
-}
-
-/* Apollo: wide lunar rover shape */
-.robot-pet.design-apollo .robot-body {
-  width: 115px;
-  height: 65px;
-  border-radius: 8px;
-}
-
-.robot-pet.design-apollo .robot-head {
-  width: 85px;
-  height: 62px;
-  border-radius: 10px;
-}
-
-.robot-pet.design-apollo .robot-feet {
-  width: 125px;
-}
-
-/* Sojourner: compact six-wheel rover */
-.robot-pet.design-sojourner .robot-head {
-  width: 88px;
-  height: 58px;
-  border-radius: 8px;
-}
-
-.robot-pet.design-sojourner .robot-body {
-  width: 105px;
-  height: 75px;
-  border-radius: 5px;
-}
-
-.robot-pet.design-sojourner .robot-feet {
-  width: 145px;
-}
-
-.robot-pet.design-sojourner .robot-feet span {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  box-shadow: -30px 0 0 -2px #ffd76a, 30px 0 0 -2px #ffd76a;
-}
-
-/* Spirit and Opportunity: tall exploration rover */
-.robot-pet.design-spirit .robot-head {
-  width: 105px;
-  height: 65px;
-  border-radius: 12px 12px 5px 5px;
-}
-
-.robot-pet.design-spirit .robot-body {
-  width: 78px;
-  height: 88px;
-  border-radius: 8px;
-}
-
-.robot-pet.design-spirit .robot-feet {
-  width: 125px;
-}
-
-/* Ingenuity: helicopter-inspired design */
-.robot-pet.design-ingenuity .robot-head {
-  width: 75px;
-  height: 55px;
-  border-radius: 50%;
-}
-
-.robot-pet.design-ingenuity .robot-body {
-  width: 75px;
-  height: 85px;
-  border-radius: 12px;
-}
-
-.robot-pet.design-ingenuity::before {
-  content: "";
-  position: absolute;
-  top: -32px;
-  width: 145px;
-  height: 7px;
-  background: #ffd76a;
-  border: 3px solid #25264b;
-  border-radius: 5px;
-}
-
-.robot-pet.design-ingenuity .robot-feet {
-  width: 100px;
-}
-
-.robot-pet.design-ingenuity .robot-feet span {
-  width: 42px;
-  height: 7px;
-  border-radius: 5px;
-}
-
-/* Voyager: spacecraft-inspired design */
-.robot-pet.design-voyager .robot-head {
-  width: 78px;
-  height: 78px;
-  border-radius: 50%;
-}
-
-.robot-pet.design-voyager .robot-body {
-  width: 100px;
-  height: 75px;
-  border-radius: 50%;
-}
-
-.robot-pet.design-voyager .robot-ear {
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  top: 25px;
-}
-
-.robot-pet.design-voyager .robot-feet span {
-  width: 35px;
-  height: 12px;
-  border-radius: 3px;
-}
-
-/* Interaction */
-.robot-pet.waving .robot-arm.right {
-  animation: robot-wave 0.3s ease-in-out 3;
-}
-
-@keyframes robot-wave {
-  0%, 100% {
-    transform: rotate(-15deg);
-  }
-  50% {
-    transform: rotate(-100deg);
-  }
-}
-
-.robot-name {
-  color: #ffd76a;
-  font-family: "Courier New", monospace;
-  font-weight: bold;
-  margin-top: 15px;
-  text-align: center;
-}
-
-.robot-base-name {
-  color: #b8b8d8;
-  font-family: "Courier New", monospace;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 5px;
-}
-
-.robot-hint {
-  color: #55c7ff;
-  font-family: "Courier New", monospace;
-  font-size: 11px;
-  margin-top: 8px;
-  text-align: center;
-}
+.rp-waving .rp-arm-right { animation: rp-wave .3s ease-in-out 3; }
+@keyframes rp-wave { 0%,100% { transform: rotate(-10deg); } 50% { transform: rotate(-105deg); } }
+.rp-name { margin: 9px 0 0; color: #ffd76a; font: 700 12px "Courier New",monospace; text-align: center; overflow-wrap: anywhere; }
+.rp-base-name { margin: 3px 0 0; color: #c8c9e6; font: 12px "Courier New",monospace; text-align: center; }
+.rp-hint { margin: 7px 0 0; color: #b8b8d8; font: 700 10px "Courier New",monospace; text-align: center; }
 
 @media (max-width: 480px) {
-  .robot-pet {
-    transform: scale(0.9);
-    transform-origin: top center;
-    margin-bottom: -15px;
-  }
+  .rp-robot { transform: scale(.94); transform-origin: center top; margin-bottom: -12px; }
+  .rp-robot:hover { transform: scale(.94) translateY(-3px); }
+  .rp-speech { font-size: 11px; }
+  .rp-apollo { --rp-body-width: 142px; --rp-chassis-width: 170px; }
+  .rp-sojourner { --rp-body-width: 108px; --rp-chassis-width: 150px; }
+  .rp-spirit { --rp-body-width: 124px; --rp-chassis-width: 166px; }
 }
-
-.robot-eye { background: var(--eye-color, #24204a); }
-.robot-tool { display: inline-block; font-size: 15px; margin-left: 2px; }
+@media (prefers-reduced-motion: reduce) { .rp-robot,.rp-robot * { animation: none !important; transition: none !important; } }

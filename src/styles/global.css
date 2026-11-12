@@ -76,11 +76,11 @@ input:focus-visible {
 }
 .journey-stages li {
   padding: 10px 4px; border: 1px solid var(--pixel-border); color: var(--pixel-muted);
-  font-size: 12px; text-align: center;
+  font-size: 14px; text-align: center;
 }
 .journey-stages li.complete { color: #10132b; background: #70e1f5; border-color: #70e1f5; font-weight: bold; }
 .new-game-navigation { margin-top: 26px; padding-top: 18px; border-top: 1px solid #7776bd; }
-.new-game-navigation p { color: var(--pixel-muted); font-size: 12px; margin-bottom: 10px; }
+.new-game-navigation p { color: var(--pixel-muted); font-size: 14px; margin-bottom: 10px; }
 .creative-prompt { padding: 10px 12px; margin: 10px 0; background: #292650; border-left: 3px solid #70e1f5; color: #f5f3ff; }
 .fact-chip-section { margin-top: 20px; }
 .fact-chip-list { display: grid; gap: 8px; margin-top: 10px; }
@@ -96,9 +96,9 @@ input:focus-visible {
 .postcard-preview p { white-space: pre-wrap; line-height: 1.6; }
 .postcard-preview small { display: block; margin-top: 16px; }
 .creative-error { color: #ffb4b4; margin: 12px 0; font-weight: bold; }
-.museum-creator-plaque { padding: 8px; background: #292650; color: #f5f3ff; font-size: 12px; }
+.museum-creator-plaque { padding: 8px; background: #292650; color: #f5f3ff; font-size: 14px; }
 .museum-work-content { white-space: pre-wrap; overflow-wrap: anywhere; }
-.museum-filters label { display: grid; gap: 5px; color: #f5f3ff; font-size: 12px; }
+.museum-filters label { display: grid; gap: 5px; color: #f5f3ff; font-size: 14px; }
 .museum-filters select { min-width: 140px; padding: 8px; }
 @media (max-width: 620px) {
   .accessibility-tools { position: relative; top: auto; right: auto; justify-content: center; margin: 8px auto; }
@@ -113,7 +113,7 @@ input:focus-visible {
   .postcard-preview, .museum-card { break-inside: avoid; }
 }
 
-.class-code-note { display: block; margin-top: 7px; color: var(--pixel-muted); font-size: 11px; line-height: 1.4; }
+.class-code-note { display: block; margin-top: 7px; color: var(--pixel-muted); font-size: 13px; line-height: 1.4; }
 
 .drawing-pad-section { margin: 20px 0; text-align: left; }
 .postcard-drawing-canvas { display: block; width: 100%; height: auto; margin: 10px 0; background: #fff; border: 2px dashed #7776bd; border-radius: 6px; touch-action: none; cursor: crosshair; }
@@ -132,4 +132,4 @@ input:focus-visible {
   .postcard-preview { display: block !important; }
 }
 
-.accessibility-status { align-self: center; padding: 5px 8px; color: #fff; background: #171b3b; font-size: 10px; }
+.accessibility-status { align-self: center; padding: 5px 8px; color: #fff; background: #171b3b; font-size: 12px; }
