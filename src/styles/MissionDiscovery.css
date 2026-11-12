@@ -215,3 +215,7 @@
     transition: none;
   }
 }
+.mission-modal { max-height: min(86vh, 900px); overflow-y: auto; }
+.mission-modal li { line-height: 1.55; margin: 7px 0; }
+.mission-sources { margin-top: 22px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.2); }
+.mission-sources a { color: #70e1f5; text-decoration: underline; overflow-wrap: anywhere; }

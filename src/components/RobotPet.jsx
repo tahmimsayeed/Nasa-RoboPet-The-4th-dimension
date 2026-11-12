@@ -46,10 +46,13 @@ export default function RobotPet({
   const waveTimer = useRef(null);
 
   useEffect(() => {
+    setGreeting(nickname ? `Hi, ${nickname}!` : "Beep boop! Your adventure awaits!");
+  }, [nickname]);
+
+  useEffect(() => {
     return () => {
-      if (waveTimer.current) {
-        clearTimeout(waveTimer.current);
-      }
+      if (waveTimer.current) clearTimeout(waveTimer.current);
+      if ("speechSynthesis" in window) window.speechSynthesis.cancel();
     };
   }, []);
 
@@ -63,6 +66,12 @@ export default function RobotPet({
       ];
 
     setGreeting(randomGreeting);
+    if ("speechSynthesis" in window) {
+      window.speechSynthesis.cancel();
+      const message = new SpeechSynthesisUtterance(randomGreeting);
+      message.rate = 0.95;
+      window.speechSynthesis.speak(message);
+    }
     setIsWaving(true);
 
     if (waveTimer.current) {
@@ -155,14 +164,13 @@ export default function RobotPet({
         </div>
 
         <div className="robot-body">
+          <div className="robot-arm left" aria-hidden="true"></div>
+          <div className="robot-arm right" aria-hidden="true"></div>
           <div className="robot-chest">★</div>
           <span className="robot-tool">
             {toolEmojis[tool] || "🔧"}
           </span>
         </div>
-
-        <div className="robot-arm left"></div>
-        <div className="robot-arm right"></div>
 
         <div className={`robot-feet ${wheelClass}`}>
           <span></span>
@@ -172,7 +180,7 @@ export default function RobotPet({
 
       <p className="robot-name">{nickname || "ROBO-PAL"}</p>
       <p className="robot-base-name">{baseName}</p>
-      <p className="robot-hint">CLICK ME TO HEAR A MESSAGE!</p>
+      <p className="robot-hint">CLICK ME FOR A NEW MESSAGE!</p>
     </div>
   );
 }

@@ -31,3 +31,105 @@ input:focus-visible {
 #root {
   min-height: 100vh;
 }
+
+
+/* Saved explorer profiles and accessibility controls */
+.saved-explorers {
+  margin-top: 28px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(194, 196, 223, 0.35);
+  text-align: left;
+}
+.saved-explorers h2 { color: var(--pixel-yellow); font-size: 18px; margin-bottom: 8px; }
+.saved-explorers > p { color: var(--pixel-muted); font-size: 13px; line-height: 1.5; margin-bottom: 12px; }
+.saved-explorer-list { display: grid; gap: 9px; }
+.saved-explorer-button {
+  display: flex; justify-content: space-between; align-items: center; gap: 12px;
+  width: 100%; padding: 12px; color: var(--pixel-white); background: #252e5c;
+  border: 2px solid var(--pixel-border); cursor: pointer; text-align: left;
+}
+.saved-explorer-button:hover { border-color: var(--pixel-cyan); }
+.saved-explorer-button small { color: var(--pixel-muted); }
+.accessibility-tools {
+  position: fixed; z-index: 20; top: 10px; right: 10px; display: flex;
+  flex-wrap: wrap; justify-content: flex-end; gap: 6px; max-width: min(96vw, 560px);
+}
+.accessibility-tools button, .accessibility-tools summary {
+  padding: 7px 9px; color: #fff; background: #171b3b; border: 1px solid #a8b5ff;
+  font: inherit; font-size: 11px; cursor: pointer;
+}
+.accessibility-tools details { position: relative; }
+.accessibility-tools details[open] dl {
+  position: absolute; right: 0; top: 100%; width: min(280px, 85vw); padding: 12px;
+  color: #17132d; background: #fff; border: 2px solid #252e5c; box-shadow: 0 8px 24px #0008;
+}
+.accessibility-tools dt { font-weight: bold; margin-top: 7px; }
+.accessibility-tools dd { margin: 2px 0 8px; font-size: 12px; line-height: 1.45; }
+.high-contrast { filter: contrast(1.2); }
+.high-contrast body { background: #000; color: #fff; }
+.high-contrast .welcome-card, .high-contrast .creative-mission-card,
+.high-contrast .museum-container { background: #000; border-color: #ffeb3b; color: #fff; }
+.screen-navigation { display: flex; justify-content: center; padding: 16px; }
+.journey-stages {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px;
+  padding: 0; margin: 18px 0 24px; list-style: none;
+}
+.journey-stages li {
+  padding: 10px 4px; border: 1px solid var(--pixel-border); color: var(--pixel-muted);
+  font-size: 12px; text-align: center;
+}
+.journey-stages li.complete { color: #10132b; background: #70e1f5; border-color: #70e1f5; font-weight: bold; }
+.new-game-navigation { margin-top: 26px; padding-top: 18px; border-top: 1px solid #7776bd; }
+.new-game-navigation p { color: var(--pixel-muted); font-size: 12px; margin-bottom: 10px; }
+.creative-prompt { padding: 10px 12px; margin: 10px 0; background: #292650; border-left: 3px solid #70e1f5; color: #f5f3ff; }
+.fact-chip-section { margin-top: 20px; }
+.fact-chip-list { display: grid; gap: 8px; margin-top: 10px; }
+.fact-chip-list button {
+  padding: 10px; text-align: left; color: #f5f3ff; background: #252e5c;
+  border: 1px solid #70e1f5; cursor: pointer; line-height: 1.45;
+}
+.postcard-preview {
+  margin: 20px 0; padding: 22px; color: #282044; background: #fff4d6;
+  border: 5px double #a56d45; box-shadow: 4px 5px 0 #0005; text-align: left;
+}
+.postcard-preview h3 { margin: 12px 0; }
+.postcard-preview p { white-space: pre-wrap; line-height: 1.6; }
+.postcard-preview small { display: block; margin-top: 16px; }
+.creative-error { color: #ffb4b4; margin: 12px 0; font-weight: bold; }
+.museum-creator-plaque { padding: 8px; background: #292650; color: #f5f3ff; font-size: 12px; }
+.museum-work-content { white-space: pre-wrap; overflow-wrap: anywhere; }
+.museum-filters label { display: grid; gap: 5px; color: #f5f3ff; font-size: 12px; }
+.museum-filters select { min-width: 140px; padding: 8px; }
+@media (max-width: 620px) {
+  .accessibility-tools { position: relative; top: auto; right: auto; justify-content: center; margin: 8px auto; }
+  .journey-stages { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .saved-explorer-button { align-items: flex-start; flex-direction: column; }
+}
+@media print {
+  .accessibility-tools, .creative-actions, .creative-actions button, .museum-controls,
+  .museum-reactions, .approval-actions, .screen-navigation { display: none !important; }
+  body, .space-background { background: #fff !important; color: #111 !important; }
+  .creative-mission-page, .museum-page { padding: 0 !important; }
+  .postcard-preview, .museum-card { break-inside: avoid; }
+}
+
+.class-code-note { display: block; margin-top: 7px; color: var(--pixel-muted); font-size: 11px; line-height: 1.4; }
+
+.drawing-pad-section { margin: 20px 0; text-align: left; }
+.postcard-drawing-canvas { display: block; width: 100%; height: auto; margin: 10px 0; background: #fff; border: 2px dashed #7776bd; border-radius: 6px; touch-action: none; cursor: crosshair; }
+.drawing-pad-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.drawing-pad-actions button { padding: 8px 12px; color: #fff; background: #252e5c; border: 1px solid #70e1f5; cursor: pointer; }
+.postcard-drawing-preview { display: block; max-width: 100%; max-height: 180px; margin: 12px 0; border: 1px solid #a56d45; }
+
+@media print {
+  .creative-activity-options, .creative-form > label, .creative-form > input,
+  .creative-form > textarea, .creative-form > p, .fact-chip-section,
+  .drawing-pad-section, .creative-mission-card > .creative-description,
+  .creative-mission-card > .creative-label, .creative-mission-card > h1 {
+    display: none !important;
+  }
+  .creative-mission-card { max-width: none !important; padding: 0 !important; background: #fff !important; border: 0 !important; box-shadow: none !important; }
+  .postcard-preview { display: block !important; }
+}
+
+.accessibility-status { align-self: center; padding: 5px 8px; color: #fff; background: #171b3b; font-size: 10px; }

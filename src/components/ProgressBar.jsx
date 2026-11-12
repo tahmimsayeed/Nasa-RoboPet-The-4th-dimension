@@ -3,7 +3,8 @@ export default function ProgressBar({
   progress = 0,
   label = "Game Progress",
 }) {
-  const safeProgress = Math.min(100, Math.max(0, progress));
+  const numericProgress = Number.isFinite(Number(progress)) ? Number(progress) : 0;
+  const safeProgress = Math.round(Math.min(100, Math.max(0, numericProgress)));
 
   return (
     <div className="progress-container">

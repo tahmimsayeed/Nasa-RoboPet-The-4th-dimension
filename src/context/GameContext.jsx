@@ -1,97 +1,125 @@
-
 import { createContext, useContext, useState } from "react";
 import { storageService } from "../services/storageService";
 
-// Create a shared game context
 const GameContext = createContext(null);
 
+function createPlayerId() {
+  if (typeof crypto !== "undefined" && crypto.randomUUID) {
+    return `player-${crypto.randomUUID()}`;
+  }
+  return `player-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+}
+
 export function GameProvider({ children }) {
-  const [player, setPlayer] = useState(() => {
-    return storageService.getPlayer();
-  });
+  const [players, setPlayers] = useState(() => storageService.getPlayers());
+  const [player, setPlayer] = useState(() => storageService.getPlayer());
 
-  // Save player information and update the application
+  const refreshPlayers = () => setPlayers(storageService.getPlayers());
+
   const startGame = (playerInfo) => {
-    storageService.savePlayer(playerInfo);
-    setPlayer(playerInfo);
+    if (!playerInfo) return null;
+    const savedPlayer = storageService.savePlayer({
+      ...playerInfo,
+      playerId: playerInfo.playerId || createPlayerId(),
+    });
+    if (!savedPlayer) return null;
+    setPlayer(savedPlayer);
+    refreshPlayers();
+    return savedPlayer;
   };
 
-  // Update player information and save it
   const updatePlayer = (updatedPlayer) => {
-    if (!updatedPlayer) return;
-
-    storageService.savePlayer(updatedPlayer);
-    setPlayer(updatedPlayer);
+    if (!updatedPlayer) return null;
+    const savedPlayer = storageService.savePlayer(updatedPlayer);
+    if (!savedPlayer) return null;
+    setPlayer(savedPlayer);
+    refreshPlayers();
+    return savedPlayer;
   };
 
-  // Save a new creative submission
+  const startNewGame = () => {
+    storageService.clearPlayer();
+    setPlayer(null);
+  };
+
+  const switchPlayer = (playerId) => {
+    const savedPlayer = storageService.setActivePlayer(playerId);
+    if (!savedPlayer) return;
+    setPlayer(savedPlayer);
+    refreshPlayers();
+  };
+
+  const updatePlayerById = (playerId, updater) => {
+    const target = storageService.getPlayers().find((item) => item.playerId === playerId);
+    if (!target) return;
+
+    const updated = storageService.savePlayer(updater(target));
+    if (!updated) return;
+
+    if (player?.playerId === playerId) setPlayer(updated);
+    refreshPlayers();
+  };
+
   const saveCreativeWork = (work) => {
     if (!player) return;
-
-    const updatedPlayer = {
+    updatePlayer({
       ...player,
       creativeWorks: [
         ...(player.creativeWorks || []),
-        work,
+        {
+          ...work,
+          creatorName: player.nickname,
+          creatorPlayerId: player.playerId,
+          robotSnapshot: player.robot || null,
+        },
       ],
-    };
-
-    updatePlayer(updatedPlayer);
+    });
   };
 
-  // Update an existing creative submission
-  const updateCreativeWork = (workId, updates) => {
-    if (!player) return;
+  const updateCreativeWork = (workId, updates, ownerPlayerId = player?.playerId) => {
+    if (!ownerPlayerId) return;
+    updatePlayerById(ownerPlayerId, (owner) => ({
+      ...owner,
+      creativeWorks: (owner.creativeWorks || []).map((work) =>
+        work.id === workId ? { ...work, ...updates } : work
+      ),
+    }));
+  };
 
-    const updatedPlayer = {
-      ...player,
-      creativeWorks: (player.creativeWorks || []).map((work) =>
+  const removeCreativeWork = (workId, ownerPlayerId = player?.playerId) => {
+    if (!ownerPlayerId) return;
+    updatePlayerById(ownerPlayerId, (owner) => ({
+      ...owner,
+      creativeWorks: (owner.creativeWorks || []).filter((work) => work.id !== workId),
+    }));
+  };
+
+  const addCreativeReaction = (workId, sticker, ownerPlayerId = player?.playerId) => {
+    if (!ownerPlayerId) return;
+    updatePlayerById(ownerPlayerId, (owner) => ({
+      ...owner,
+      creativeWorks: (owner.creativeWorks || []).map((work) =>
         work.id === workId
-          ? { ...work, ...updates }
+          ? { ...work, reactions: [...(work.reactions || []), sticker] }
           : work
       ),
-    };
-
-    updatePlayer(updatedPlayer);
-  };
-
-  // Add a sticker reaction to a creative submission
-  const addCreativeReaction = (workId, sticker) => {
-    if (!player) return;
-
-    const updatedPlayer = {
-      ...player,
-      creativeWorks: (player.creativeWorks || []).map((work) =>
-        work.id === workId
-          ? {
-              ...work,
-              reactions: [
-                ...(work.reactions || []),
-                sticker,
-              ],
-            }
-          : work
-      ),
-    };
-
-    updatePlayer(updatedPlayer);
-  };
-
-  // Clear player information
-  const resetGame = () => {
-    storageService.clearPlayer();
-    setPlayer(null);
+    }));
   };
 
   return (
     <GameContext.Provider
       value={{
         player,
+        players,
         startGame,
-        resetGame,
+        updatePlayer,
+        resetGame: startNewGame,
+        startNewGame,
+        switchPlayer,
         saveCreativeWork,
         updateCreativeWork,
         addCreativeReaction,
+        removeCreativeWork,
       }}
     >
       {children}
@@ -99,13 +127,8 @@ export function GameProvider({ children }) {
   );
 }
 
-// Custom hook for accessing game information
 export function useGame() {
   const context = useContext(GameContext);
-
-  if (!context) {
-    throw new Error("useGame must be used inside GameProvider");
-  }
-
+  if (!context) throw new Error("useGame must be used inside GameProvider");
   return context;
 }

@@ -326,3 +326,5 @@
     font-size: 12px;
   }
 }
+
+.workshop-saved-message { margin: 12px 0; padding: 10px; color: #50dc8c; border: 1px solid #50dc8c; background: rgba(80,220,140,.1); }

@@ -182,28 +182,63 @@
 ===================================== */
 
 @media print {
+  @page {
+    margin: 12mm;
+  }
+
+  html,
   body {
-    background: white !important;
+    background: #10132b !important;
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
   }
 
   .trading-card-page {
     min-height: auto;
     padding: 0;
-    background: white !important;
-    color: black !important;
+    background: #10132b !important;
+    color: #f5f3ff !important;
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
   }
 
   .trading-card-header {
-    display: none;
+    display: none !important;
   }
 
   .trading-card {
+    width: 100%;
     max-width: 100%;
-    color: black;
-    background: white !important;
-    border: 2px solid #333;
+    color: #f5f3ff !important;
+    background: linear-gradient(145deg, #29265b, #171a3b) !important;
+    border: 4px solid #55c7ff;
     box-shadow: none;
     break-inside: avoid;
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
+  }
+
+  .trading-card-pet,
+  .trading-card-hardware,
+  .trading-card-mission,
+  .trading-card-facts,
+  .trading-card-details {
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
+  }
+
+  .trading-card-pet {
+    background: rgba(12, 15, 43, 0.85) !important;
+  }
+
+  .trading-card-hardware,
+  .trading-card-mission,
+  .trading-card-facts {
+    background: rgba(85, 199, 255, 0.12) !important;
+  }
+
+  .trading-card-details {
+    background: rgba(16, 19, 43, 0.8) !important;
   }
 
   .trading-card h2,
@@ -212,20 +247,13 @@
   .trading-card p,
   .trading-card li,
   .trading-card-footer,
-  .trading-card-top {
-    color: black !important;
-  }
-
-  .trading-card-pet,
-  .trading-card-hardware,
-  .trading-card-mission,
-  .trading-card-facts {
-    background: white !important;
-    border-color: #777;
+  .trading-card-top,
+  .trading-card-details strong {
+    color: inherit;
   }
 
   .print-card-button {
-    display: none;
+    display: none !important;
   }
 }
 
@@ -271,13 +299,10 @@
 @media print {
   .trading-card-details {
     break-inside: avoid;
-    background: white;
-    border: 1px solid #777;
+    border: 1px solid #55558e;
   }
 
-  .trading-card-details h3,
-  .trading-card-details strong,
-  .trading-card-details li {
-    color: black;
-  }
+  .trading-card-details h3 { color: #55c7ff !important; }
+  .trading-card-details strong { color: #ffd76a !important; }
+  .trading-card-details li { color: #f5f3ff !important; }
 }
