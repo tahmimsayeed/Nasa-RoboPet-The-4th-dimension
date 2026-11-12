@@ -2,7 +2,7 @@ import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
 
-const repositoryBase = "/Nasa-RoboPet-The-4th-dimension/";
+const repositoryBase = "/RoboPet-Station/";
 
 export default defineConfig({
   base: repositoryBase,
