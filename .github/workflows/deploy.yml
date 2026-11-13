@@ -1,23 +1,23 @@
-name: Deploy Robo Pet Station
+name: Deploy Robo-Pet Station
 
 on:
   push:
     branches:
-      - main
+       - feature/real-flow
+  pull_request:
+    branches:
+       - feature/real-flow
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
-  group: "pages"
-  cancel-in-progress: false
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -31,25 +31,32 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Check lint
+        run: npm run lint
+
       - name: Build application
         run: npm run build
 
       - name: Configure Pages
+        if: github.event_name == 'push'
         uses: actions/configure-pages@v5
 
       - name: Upload Pages artifact
+        if: github.event_name == 'push'
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
 
   deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/feature/real-flow'
     runs-on: ubuntu-latest
     needs: build
-
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-
     steps:
       - name: Deploy to GitHub Pages
         id: deployment

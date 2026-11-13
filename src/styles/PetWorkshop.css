@@ -204,71 +204,6 @@
 }
 
 
-/* =================================
-   CUSTOM ROBOT FEATURES
-================================= */
-
-/* Robot antenna options */
-
-.robot-antenna.antenna-hidden {
-  display: none;
-}
-
-.robot-antenna.antenna-satellite span {
-  width: 20px;
-  height: 12px;
-  border-radius: 50%;
-  background: #ffd76a;
-  left: -7px;
-  top: -5px;
-  box-shadow: 0 0 8px #ffd76a;
-}
-
-/* Robot wheel options */
-
-.robot-feet.wheels-large span {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background: #454d83;
-  border: 4px solid var(--robot-color);
-}
-
-.robot-feet.wheels-small span {
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: #454d83;
-  border: 3px solid var(--robot-color);
-}
-
-/* Robot legs option */
-
-.robot-feet.robot-legs {
-  gap: 25px;
-}
-
-.robot-feet.robot-legs span {
-  width: 10px;
-  height: 25px;
-  border-radius: 2px;
-  background: var(--robot-color);
-}
-
-/* Robot tool */
-
-.robot-body {
-  position: relative;
-}
-
-.robot-tool {
-  position: absolute;
-  right: -22px;
-  bottom: -5px;
-  font-size: 20px;
-  z-index: 2;
-}
-
 /* =====================================
    SAVE ROBO-PAL BUTTON
 ===================================== */
@@ -390,4 +325,196 @@
     padding: 10px;
     font-size: 12px;
   }
+}
+
+.workshop-saved-message { margin: 12px 0; padding: 10px; color: #50dc8c; border: 1px solid #50dc8c; background: rgba(80,220,140,.1); }
+
+/* Colourful, child-friendly galaxy theme for the Workshop */
+.pet-workshop {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 14% 18%, rgba(255, 89, 177, .24) 0, transparent 28%),
+    radial-gradient(ellipse at 86% 12%, rgba(72, 120, 255, .30) 0, transparent 30%),
+    radial-gradient(ellipse at 78% 72%, rgba(33, 220, 213, .17) 0, transparent 27%),
+    radial-gradient(ellipse at 22% 84%, rgba(151, 83, 255, .22) 0, transparent 30%),
+    linear-gradient(145deg, #111638 0%, #21164b 48%, #101b3d 100%);
+}
+.pet-workshop::before,
+.pet-workshop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+.pet-workshop::before {
+  opacity: .85;
+  background-image:
+    radial-gradient(2px 2px at 8% 13%, #fff 98%, transparent),
+    radial-gradient(2px 2px at 19% 37%, #8eeaff 98%, transparent),
+    radial-gradient(3px 3px at 31% 8%, #ffd76a 98%, transparent),
+    radial-gradient(2px 2px at 44% 28%, #fff 98%, transparent),
+    radial-gradient(2px 2px at 57% 12%, #ff9bd2 98%, transparent),
+    radial-gradient(3px 3px at 69% 42%, #fff 98%, transparent),
+    radial-gradient(2px 2px at 83% 24%, #9ef5ff 98%, transparent),
+    radial-gradient(2px 2px at 94% 58%, #ffd76a 98%, transparent),
+    radial-gradient(2px 2px at 13% 73%, #fff 98%, transparent),
+    radial-gradient(3px 3px at 38% 86%, #ff9bd2 98%, transparent),
+    radial-gradient(2px 2px at 62% 77%, #fff 98%, transparent),
+    radial-gradient(2px 2px at 91% 91%, #9ef5ff 98%, transparent);
+}
+.pet-workshop::after {
+  opacity: .45;
+  background:
+    radial-gradient(ellipse at 12% 48%, rgba(65, 214, 255, .12), transparent 22%),
+    radial-gradient(ellipse at 88% 38%, rgba(255, 105, 190, .13), transparent 24%),
+    radial-gradient(ellipse at 48% 96%, rgba(157, 105, 255, .16), transparent 28%);
+  filter: blur(14px);
+}
+.pet-workshop-header,
+.pet-workshop-layout { position: relative; z-index: 1; }
+.pet-preview-section,
+.pet-customization-section {
+  background: rgba(27, 32, 66, .88);
+  backdrop-filter: blur(5px);
+  border-color: rgba(126, 160, 255, .55);
+  box-shadow: 0 12px 35px rgba(5, 8, 30, .25);
+}
+.pet-preview {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 2px solid rgba(113, 221, 255, .75);
+  background:
+    radial-gradient(ellipse at 18% 20%, rgba(255, 92, 184, .27), transparent 35%),
+    radial-gradient(ellipse at 82% 26%, rgba(77, 122, 255, .32), transparent 38%),
+    radial-gradient(ellipse at 50% 90%, rgba(80, 224, 212, .18), transparent 35%),
+    linear-gradient(155deg, #171943 0%, #2a1b59 54%, #111c43 100%);
+  box-shadow: inset 0 0 35px rgba(91, 112, 255, .15);
+}
+.pet-preview::before,
+.pet-preview::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+.pet-preview::before {
+  background-image:
+    radial-gradient(2px 2px at 7% 12%, #fff 98%, transparent),
+    radial-gradient(3px 3px at 17% 62%, #ffd76a 98%, transparent),
+    radial-gradient(2px 2px at 29% 29%, #9defff 98%, transparent),
+    radial-gradient(2px 2px at 43% 78%, #fff 98%, transparent),
+    radial-gradient(3px 3px at 62% 16%, #ff9bd2 98%, transparent),
+    radial-gradient(2px 2px at 78% 55%, #fff 98%, transparent),
+    radial-gradient(2px 2px at 91% 23%, #9defff 98%, transparent),
+    radial-gradient(2px 2px at 87% 86%, #ffd76a 98%, transparent);
+}
+.pet-preview::after {
+  background:
+    radial-gradient(circle at 11% 38%, rgba(255, 121, 196, .45) 0 13px, transparent 14px),
+    radial-gradient(circle at 89% 68%, rgba(89, 220, 255, .38) 0 10px, transparent 11px),
+    radial-gradient(circle at 78% 12%, rgba(255, 215, 106, .32) 0 5px, transparent 6px);
+}
+
+
+/* =========================================================
+   MILKY WAY WORKSHOP — colourful nebula, stars and drifting
+   planets/satellites. Content remains above the decoration.
+========================================================= */
+.pet-workshop {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 18% 18%, rgba(118, 66, 204, .42), transparent 34%),
+    radial-gradient(ellipse at 82% 24%, rgba(28, 139, 202, .30), transparent 32%),
+    radial-gradient(ellipse at 55% 72%, rgba(195, 66, 154, .24), transparent 38%),
+    radial-gradient(ellipse at 12% 86%, rgba(38, 181, 190, .20), transparent 30%),
+    linear-gradient(145deg, #090d2c 0%, #171044 42%, #101a43 72%, #090d2c 100%);
+}
+
+.pet-workshop::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -8%;
+  pointer-events: none;
+  opacity: .9;
+  background-image:
+    radial-gradient(2px 2px at 8% 12%, #fff 99%, transparent),
+    radial-gradient(2px 2px at 23% 34%, #a9eaff 99%, transparent),
+    radial-gradient(3px 3px at 39% 8%, #fff0a8 99%, transparent),
+    radial-gradient(2px 2px at 57% 25%, #fff 99%, transparent),
+    radial-gradient(2px 2px at 74% 13%, #f7bfff 99%, transparent),
+    radial-gradient(3px 3px at 89% 39%, #fff 99%, transparent),
+    radial-gradient(2px 2px at 14% 66%, #fff 99%, transparent),
+    radial-gradient(2px 2px at 32% 84%, #b8f7ff 99%, transparent),
+    radial-gradient(3px 3px at 66% 78%, #fff 99%, transparent),
+    radial-gradient(2px 2px at 91% 88%, #ffe1a6 99%, transparent),
+    radial-gradient(ellipse at 48% 48%, rgba(98, 82, 194, .18), transparent 46%);
+  background-size: 100% 100%;
+  animation: milkyway-twinkle 8s ease-in-out infinite alternate;
+}
+
+.pet-workshop::after {
+  content: "🛰️     🪐          ✦       🌎             🛰️";
+  position: absolute;
+  z-index: -1;
+  top: 12%;
+  left: -5%;
+  width: 110%;
+  pointer-events: none;
+  white-space: pre;
+  font-size: clamp(22px, 3vw, 38px);
+  letter-spacing: clamp(12px, 4vw, 55px);
+  opacity: .62;
+  text-shadow: 0 0 16px rgba(126, 208, 255, .7);
+  animation: orbiting-decor 34s linear infinite alternate;
+}
+
+.pet-workshop-header,
+.pet-workshop-layout {
+  position: relative;
+  z-index: 1;
+}
+
+.pet-preview-section,
+.pet-customization-section {
+  background: rgba(25, 29, 73, .84);
+  border-color: rgba(129, 135, 230, .72);
+  box-shadow: 0 12px 35px rgba(3, 5, 28, .28), inset 0 0 24px rgba(120, 92, 220, .08);
+  backdrop-filter: blur(5px);
+}
+
+.pet-preview {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 55%, rgba(91, 64, 172, .34), transparent 58%),
+    radial-gradient(circle at 15% 18%, rgba(255,255,255,.8) 1px, transparent 2px),
+    radial-gradient(circle at 84% 27%, rgba(160,225,255,.9) 1px, transparent 2px),
+    radial-gradient(circle at 22% 78%, rgba(255,208,246,.85) 1px, transparent 2px),
+    linear-gradient(160deg, rgba(12, 15, 49, .95), rgba(34, 20, 79, .95));
+  background-size: auto, 95px 95px, 130px 130px, 115px 115px, auto;
+  border-color: #70dcff;
+  box-shadow: inset 0 0 34px rgba(129, 86, 232, .24);
+}
+
+@keyframes milkyway-twinkle {
+  from { opacity: .58; transform: translate3d(0, 0, 0) scale(1); }
+  to { opacity: 1; transform: translate3d(1%, -1%, 0) scale(1.025); }
+}
+
+@keyframes orbiting-decor {
+  from { transform: translate3d(-2%, 0, 0) rotate(-3deg); }
+  to { transform: translate3d(7%, 18px, 0) rotate(4deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pet-workshop::before,
+  .pet-workshop::after { animation: none !important; }
 }

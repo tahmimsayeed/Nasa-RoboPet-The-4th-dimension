@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import RobotPet from "../components/RobotPet";
 import { useGame } from "../context/GameContext";
 import "../styles/PetWorkshop.css";
@@ -94,10 +94,11 @@ const eyeOptions = [
   { name: "Purple Eyes", value: "#b58aff" }
 ];
 
-export default function PetWorkshop() {
+export default function PetWorkshop({ onSaved }) {
   const { player, startGame } = useGame();
 
   const savedRobot = player?.robot;
+  const [saved, setSaved] = useState(false);
 
   // Restore previously saved customization
   const [petName, setPetName] = useState(
@@ -167,6 +168,10 @@ export default function PetWorkshop() {
     );
   });
 
+  useEffect(() => {
+    setSaved(false);
+  }, [petName, selectedBase, selectedColor, selectedAccessory, personality, wheelType, antenna, tool, eyeColor]);
+
   // Save every customization in the shared player object
   const handleSaveRobot = () => {
     const newRobot = {
@@ -182,12 +187,14 @@ export default function PetWorkshop() {
       eyeColor
     };
 
-    startGame({
+    const savedPlayer = startGame({
       ...player,
       robot: newRobot
     });
-
-    alert("Your Robo-Pal has been saved!");
+    if (savedPlayer) {
+      setSaved(true);
+      onSaved?.();
+    }
   };
 
   const selectedEyeName =
@@ -411,6 +418,11 @@ export default function PetWorkshop() {
           </div>
 
           {/* SAVE BUTTON */}
+          {saved && (
+            <p className="workshop-saved-message" role="status">
+              ✓ Your Robo-Pal is saved! Your mission archive is ready.
+            </p>
+          )}
           <button
             type="button"
             className="save-pet-button"
