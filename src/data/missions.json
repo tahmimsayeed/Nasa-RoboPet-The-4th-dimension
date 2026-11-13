@@ -20,7 +20,14 @@
       "https://www.nasa.gov/mission/apollo-15/",
       "https://www.nasa.gov/image-article/this-week-nasa-history-first-use-of-lunar-roving-vehicle-july-31-1971/",
       "https://www.nasa.gov/image-article/apollo-15-lunar-roving-vehicle/"
-    ]
+    ],
+    "hardwareSources": [
+      "https://www.nasa.gov/history/50-years-ago-apollo-15-on-the-moon-at-hadley-apennine/"
+    ],
+    "scientificImpact": "Helped astronauts investigate the Hadley-Apennine region and collect lunar rocks and soil, including samples that improved our understanding of the Moon's geological history.",
+    "hardwareLocation": "Hadley-Apennine region, Moon (left parked near the Apollo 15 landing site).",
+    "hardwareType": "Crewed lunar rover",
+    "hardwareStory": "A battery-powered, four-wheeled vehicle that allowed astronauts David Scott and James Irwin to travel farther across the Moon during their Apollo 15 exploration."
   },
   {
     "id": "sojourner",
@@ -43,7 +50,14 @@
       "https://science.nasa.gov/mission/mars-pathfinder/",
       "https://science.nasa.gov/resource/sojourner-terrain/",
       "https://science.nasa.gov/planetary-science/programs/radioisotope-power-systems/missions/"
-    ]
+    ],
+    "hardwareSources": [
+      "https://science.nasa.gov/mission/mars-pathfinder/"
+    ],
+    "scientificImpact": "Analyzed rocks and soil at 16 locations and helped demonstrate that robotic rovers could successfully explore another planet.",
+    "hardwareLocation": "Ares Vallis, Mars (Mars Pathfinder landing site).",
+    "hardwareType": "Small robotic Mars rover",
+    "hardwareStory": "A lightweight, six-wheeled rover deployed from the Mars Pathfinder lander. It drove around the landing site, photographed the terrain, and examined nearby rocks."
   },
   {
     "id": "spirit",
@@ -65,7 +79,15 @@
     "source": [
       "https://science.nasa.gov/mission/mer-spirit/",
       "https://science.nasa.gov/mission/mars-exploration-rovers-spirit-and-opportunity/"
-    ]
+    ],
+    "hardwareSources": [
+      "https://science.nasa.gov/mission/mer-spirit/",
+      "https://science.nasa.gov/mission/mars-exploration-rovers-spirit-and-opportunity/"
+    ],
+    "scientificImpact": "Found geological evidence that water had altered rocks and soils on ancient Mars, helping scientists understand the planet's wetter past.",
+    "hardwareLocation": "Gusev Crater, Mars (last resting area near the Troy region).",
+    "hardwareType": "Solar-powered robotic Mars rover",
+    "hardwareStory": "One of NASA's twin Mars Exploration Rovers. Spirit explored Gusev Crater, investigated rocks and soil, and travelled across the Martian landscape for more than six years."
   },
   {
     "id": "opportunity",
@@ -87,7 +109,15 @@
     "source": [
       "https://science.nasa.gov/mission/mer-opportunity/",
       "https://science.nasa.gov/mission/mars-exploration-rovers-spirit-and-opportunity/"
-    ]
+    ],
+    "hardwareSources": [
+      "https://science.nasa.gov/mission/mer-opportunity/",
+      "https://science.nasa.gov/mission/mars-exploration-rovers-spirit-and-opportunity/"
+    ],
+    "scientificImpact": "Found strong geological evidence that liquid water once existed on Mars and operated for almost 15 years, far exceeding its planned mission.",
+    "hardwareLocation": "Perseverance Valley, western rim of Endeavour Crater, Mars (last known location).",
+    "hardwareType": "Solar-powered robotic Mars rover",
+    "hardwareStory": "Spirit's twin rover explored Meridiani Planum, travelling between craters and examining rocks that preserved clues about ancient water."
   },
   {
     "id": "curiosity",
@@ -109,7 +139,15 @@
     "source": [
       "https://science.nasa.gov/mission/msl-curiosity/",
       "https://science.nasa.gov/mars/"
-    ]
+    ],
+    "hardwareSources": [
+      "https://science.nasa.gov/mission/msl-curiosity/",
+      "https://science.nasa.gov/mission/msl-curiosity/location-map/"
+    ],
+    "scientificImpact": "Discovered evidence of ancient freshwater environments and chemical conditions that could once have supported microbial life.",
+    "hardwareLocation": "Gale Crater and Mount Sharp, Mars (active exploration area).",
+    "hardwareType": "Nuclear-powered robotic science rover",
+    "hardwareStory": "A car-sized mobile science laboratory that uses cameras, a robotic arm, a drill, and onboard instruments to investigate Martian rocks and soil."
   },
   {
     "id": "perseverance",
@@ -131,7 +169,15 @@
     "source": [
       "https://science.nasa.gov/mission/mars-2020-perseverance/",
       "https://science.nasa.gov/mars/"
-    ]
+    ],
+    "hardwareSources": [
+      "https://science.nasa.gov/mission/mars-2020-perseverance/",
+      "https://science.nasa.gov/mission/mars-2020-perseverance/location-map/"
+    ],
+    "scientificImpact": "Investigates an ancient Martian lake and river delta, preserves rock samples for future study, and has identified a potential biosignature that requires further investigation.",
+    "hardwareLocation": "Jezero Crater, Mars (active exploration area).",
+    "hardwareType": "Nuclear-powered robotic Mars rover",
+    "hardwareStory": "A mobile science laboratory exploring Jezero Crater. It studies rocks, searches for signs of ancient microbial life, and collects and seals samples for possible future return."
   },
   {
     "id": "ingenuity",
@@ -153,7 +199,15 @@
     "source": [
       "https://science.nasa.gov/mission/mars-2020-perseverance/ingenuity-mars-helicopter/",
       "https://www.nasa.gov/news-release/after-three-years-on-mars-nasas-ingenuity-helicopter-mission-ends/"
-    ]
+    ],
+    "hardwareSources": [
+      "https://science.nasa.gov/mission/mars-2020-perseverance/ingenuity-mars-helicopter/",
+      "https://www.nasa.gov/news-release/after-three-years-on-mars-nasas-ingenuity-helicopter-mission-ends/"
+    ],
+    "scientificImpact": "Completed 72 flights, proving that powered flight is possible on another planet and demonstrating how aerial vehicles could support future exploration.",
+    "hardwareLocation": "Jezero Crater, Mars (grounded after its final flight in January 2024).",
+    "hardwareType": "Robotic Mars helicopter",
+    "hardwareStory": "A small autonomous helicopter delivered to Mars with Perseverance. It demonstrated powered, controlled flight in the planet's extremely thin atmosphere."
   },
   {
     "id": "voyager-1",
@@ -175,6 +229,14 @@
     "source": [
       "https://science.nasa.gov/mission/voyager/voyager-1/",
       "https://voyager.gsfc.nasa.gov/mission.html"
-    ]
+    ],
+    "hardwareSources": [
+      "https://science.nasa.gov/mission/voyager/voyager-1/",
+      "https://science.nasa.gov/mission/voyager/where-are-voyager-1-and-voyager-2-now/"
+    ],
+    "scientificImpact": "Returned discoveries about Jupiter and Saturn and continues to provide measurements that help scientists investigate the environment between the stars.",
+    "hardwareLocation": "Interstellar space, beyond the heliosphere (still travelling and communicating with Earth).",
+    "hardwareType": "Deep-space robotic spacecraft",
+    "hardwareStory": "A spacecraft launched in 1977 to explore the outer planets. After its encounters with Jupiter and Saturn, it continued travelling beyond the Sun's heliosphere."
   }
 ]
