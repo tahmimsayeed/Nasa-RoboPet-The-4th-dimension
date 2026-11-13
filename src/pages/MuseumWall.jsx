@@ -138,7 +138,6 @@ export default function MuseumWall({
         </p>
         <p className="teacher-notice">
           Local demo: exhibits are not shared across different devices or browsers.
-          Teacher mode is not password-protected and must not be treated as secure moderation.
         </p>
 
         <div className="museum-controls">
